@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+	<classpathentry kind="lib" path="libs/lwjgl-glfw-natives-macos.jar"/>
+	<classpathentry kind="lib" path="libs/lwjgl-glfw.jar"/>
+	<classpathentry kind="lib" path="libs/lwjgl-jemalloc-natives-macos.jar"/>
+	<classpathentry kind="lib" path="libs/lwjgl-jemalloc.jar"/>
+	<classpathentry kind="lib" path="libs/lwjgl-natives-macos.jar"/>
+	<classpathentry kind="lib" path="libs/lwjgl-openal.jar"/>
+	<classpathentry kind="lib" path="libs/lwjgl-opengl.jar"/>
+	<classpathentry kind="lib" path="libs/lwjgl-stb-natives-macos.jar"/>
+	<classpathentry kind="lib" path="libs/lwjgl-stb.jar"/>
+	<classpathentry kind="lib" path="libs/lwjgl.jar"/>
+	<classpathentry kind="lib" path="libs/joml-1.9.0.jar"/>
+	<classpathentry kind="lib" path="libs/pngdecoder-1.0.jar"/>
+	<classpathentry kind="lib" path="libs/lwjgl-openal-natives-macos.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
