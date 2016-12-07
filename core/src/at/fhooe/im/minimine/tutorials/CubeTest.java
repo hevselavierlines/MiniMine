@@ -21,12 +21,12 @@ import com.badlogic.gdx.math.Vector3;
 
 public class CubeTest extends ApplicationAdapter {
 
-	public PerspectiveCamera cam;
-    public ModelBatch modelBatch;
-    public Model model;
-    public ModelInstance instance;
-    public Environment environment;
-    public CameraInputController camController;
+	private PerspectiveCamera cam;
+	private ModelBatch modelBatch;
+	private Model model;
+	private ModelInstance instance;
+	private Environment environment;
+	private CameraInputController camController;
     private float rotate;
     private Texture texture;
 

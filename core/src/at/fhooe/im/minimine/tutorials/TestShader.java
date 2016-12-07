@@ -14,8 +14,8 @@ public class TestShader implements Shader {
 	private ShaderProgram program;
 	private Camera camera;
     private RenderContext context;
-    int u_projViewTrans;
-    int u_worldTrans;
+    private int u_projViewTrans;
+    private int u_worldTrans;
 	
     @Override
     public void init () {

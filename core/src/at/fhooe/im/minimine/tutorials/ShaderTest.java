@@ -18,12 +18,12 @@ import com.badlogic.gdx.graphics.g3d.utils.RenderContext;
 
 public class ShaderTest extends ApplicationAdapter {
 
-	public PerspectiveCamera cam;
-    public CameraInputController camController;
-    public Shader shader;
-    public RenderContext renderContext;
-    public Model model;
-    public Renderable renderable;
+	private PerspectiveCamera cam;
+	private CameraInputController camController;
+	private Shader shader;
+	private RenderContext renderContext;
+	private Model model;
+	private Renderable renderable;
      
     @Override
     public void create () {
