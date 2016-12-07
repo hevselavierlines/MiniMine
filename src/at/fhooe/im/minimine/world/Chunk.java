@@ -4,6 +4,7 @@ import java.awt.Point;
 
 import at.fhooe.im.minimine.exception.OutOfChunkBoundsException;
 import at.fhooe.im.minimine.world.block.AbstractBlock;
+import at.fhooe.im.minimine.world.block.AirBlock;
 
 public class Chunk {
 
@@ -48,6 +49,7 @@ public class Chunk {
 	public Chunk(int m, int n) {
 		this.pos = new Point(m, n);
 		this.blocks = new AbstractBlock[Chunk.CHUNK_SIZE_XZ][Chunk.MAX_CHUNK_COORD_Y + 1][Chunk.CHUNK_SIZE_XZ];
+		fillEmpty();
 	}
 	
 	/**
@@ -213,5 +215,15 @@ public class Chunk {
 		int yArray = y;
 		int zArray = Chunk.MAX_CHUNK_COORD_XZ - z + n * Chunk.CHUNK_SIZE_XZ;
 		return new Point3D(xArray, yArray, zArray);
+	}
+	
+	private void fillEmpty() {
+		for(int x = 0; x < Chunk.CHUNK_SIZE_XZ; x++) {
+			for(int y = 0; y <= Chunk.MAX_CHUNK_COORD_Y; y++) {
+				for(int z = 0; z < Chunk.CHUNK_SIZE_XZ; z++) {
+					this.blocks[x][y][z] = new AirBlock();
+				}
+			}
+		}
 	}
 }
