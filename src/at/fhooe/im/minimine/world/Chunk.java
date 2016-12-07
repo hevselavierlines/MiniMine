@@ -7,6 +7,10 @@ import at.fhooe.im.minimine.world.block.AbstractBlock;
 
 public class Chunk {
 
+	public static final int CHUNK_SIZE_XZ = 33;
+	public static final int MAX_CHUNK_COORD_XZ = 16;
+	public static final int MAX_CHUNK_COORD_Y = 255;
+	
 	private Point pos;
 	private AbstractBlock[][][] blocks;
 	
@@ -43,7 +47,7 @@ public class Chunk {
 	 */
 	public Chunk(int m, int n) {
 		this.pos = new Point(m, n);
-		this.blocks = new AbstractBlock[33][256][33];
+		this.blocks = new AbstractBlock[Chunk.CHUNK_SIZE_XZ][Chunk.MAX_CHUNK_COORD_Y + 1][Chunk.CHUNK_SIZE_XZ];
 	}
 	
 	/**
@@ -146,9 +150,9 @@ public class Chunk {
 	 * @return boolean
 	 */
 	private static boolean inBoundsAsChunkCoord(int x, int y, int z) {
-		boolean xOk = x >= -16 && x <= 16;
-		boolean yOk = y >= 0 && y <= 255;
-		boolean zOk = z >= -16 && z <= 16;
+		boolean xOk = x >= Chunk.MAX_CHUNK_COORD_XZ * (-1.) && x <= Chunk.MAX_CHUNK_COORD_XZ;
+		boolean yOk = y >= 0 && y <= Chunk.MAX_CHUNK_COORD_Y;
+		boolean zOk = z >= Chunk.MAX_CHUNK_COORD_XZ * (-1.) && z <= Chunk.MAX_CHUNK_COORD_XZ;
 		return xOk && yOk && zOk;
 	}
 	
@@ -162,9 +166,9 @@ public class Chunk {
 	 * @return boolean
 	 */
 	private static boolean inBoundsAsGlobalCoord(int m, int n, int x, int y, int z) {
-		boolean xOk = x >= -16 + m * 33 && x <= 16 + m * 33;
-		boolean yOk = y >= 0 && y <= 255;
-		boolean zOk = z >= -16 + n * 33 && z <= 16 + n * 33;
+		boolean xOk = x >= Chunk.MAX_CHUNK_COORD_XZ * (-1.) + m * Chunk.CHUNK_SIZE_XZ && x <= Chunk.MAX_CHUNK_COORD_XZ + m * Chunk.CHUNK_SIZE_XZ;
+		boolean yOk = y >= 0 && y <= Chunk.MAX_CHUNK_COORD_Y;
+		boolean zOk = z >= Chunk.MAX_CHUNK_COORD_XZ * (-1.) + n * Chunk.CHUNK_SIZE_XZ && z <= Chunk.MAX_CHUNK_COORD_XZ + n * Chunk.CHUNK_SIZE_XZ;
 		return xOk && yOk && zOk;
 	}
 	
@@ -176,7 +180,7 @@ public class Chunk {
 	 * @return
 	 */
 	private static Point3D convertChunkCoordToChunkArrayCoord(int x, int y, int z) {
-		return new Point3D(x + 16, y, 16 - z);
+		return new Point3D(x + Chunk.MAX_CHUNK_COORD_XZ, y, Chunk.MAX_CHUNK_COORD_XZ - z);
 	}
 	
 	/**
@@ -189,9 +193,9 @@ public class Chunk {
 	 * @return
 	 */
 	private static Point3D convertChunkArrayCoordToGlobalCoord(int m, int n, int x, int y, int z) {
-		int xGlobal = x - 16 + m * 33;
+		int xGlobal = x - Chunk.MAX_CHUNK_COORD_XZ + m * Chunk.CHUNK_SIZE_XZ;
 		int yGlobal = y;
-		int zGlobal = 16 - z + n * 33;
+		int zGlobal = Chunk.MAX_CHUNK_COORD_XZ - z + n * Chunk.CHUNK_SIZE_XZ;
 		return new Point3D(xGlobal, yGlobal, zGlobal);
 	}
 	
@@ -205,9 +209,9 @@ public class Chunk {
 	 * @return
 	 */
 	private static Point3D convertGlobalCoordToChunkArrayCoord(int m, int n, int x, int y, int z) {
-		int xArray = x + 16 - m * 33;
+		int xArray = x + Chunk.MAX_CHUNK_COORD_XZ - m * Chunk.CHUNK_SIZE_XZ;
 		int yArray = y;
-		int zArray = 16 - z + n * 33;
+		int zArray = Chunk.MAX_CHUNK_COORD_XZ - z + n * Chunk.CHUNK_SIZE_XZ;
 		return new Point3D(xArray, yArray, zArray);
 	}
 }
