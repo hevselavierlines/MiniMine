@@ -1,4 +1,4 @@
-package at.fhooe.im.minimine;
+package at.fhooe.im.minimine.tutorials;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;

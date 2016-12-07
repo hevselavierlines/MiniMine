@@ -6,6 +6,12 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+/**
+ * TODO Render chunks here
+ * 
+ * @author Christine
+ *
+ */
 public class MiniMine extends ApplicationAdapter {
 	SpriteBatch batch;
 	Texture img;
