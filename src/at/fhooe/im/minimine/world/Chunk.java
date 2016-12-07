@@ -128,6 +128,26 @@ public class Chunk {
 		this.blocks[converted.X][converted.Y][converted.Z] = block;
 	}
 	
+	public void fillChunkArrayCoordUp(Class<?> blocktype, int x, int yMax, int z) {
+		for(int y = 0; y <= yMax; y++) {
+			// TODO randomize fill method dirt-stones
+			try {
+				this.blocks[x][y][z] = (AbstractBlock) blocktype.newInstance();
+			} catch (Exception e) {
+				System.out.println("Awesom-o: DRECK!");
+				System.exit(69);
+			}
+		}
+	}
+	
+	public void fillChunkUp(Class<?> blocktype, int yMax) {
+		for(int x = 0; x < Chunk.CHUNK_SIZE_XZ; x++) {
+			for(int z = 0; z < Chunk.CHUNK_SIZE_XZ; z++) {
+				this.fillChunkArrayCoordUp(blocktype, x, yMax, z);
+			}
+		}
+	}
+	
 	/**
 	 * Returns the global coord of the block in that chunk at x|y|z 
 	 * @param x -16 .. +16
