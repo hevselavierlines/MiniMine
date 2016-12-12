@@ -3,11 +3,16 @@ package at.fhooe.im.minimine.world.biome;
 import java.util.Random;
 
 public class Biomes {
-	public static int HILLS = 0;
+	public final static int FIRST = -1;
+	public final static int FLATLAND = 0;
+	public final static int HILLS = 1;
+	public final static int FOREST = 2;
 	
 	private static byte[][] probabilityNeighbor = new byte[][] {
-		// HILLS
-		{  60 } // HILLS
+		// FLATLAND,	HILLS,		FOREST
+		{  50,			15,			35 		},	// FLATLAND
+		{  70,			20,			10		},	// HILLS
+		{  25,			15,			60		}	// FOREST
 	};
 	
 	/**
@@ -15,7 +20,11 @@ public class Biomes {
 	 * @param type
 	 * @return
 	 */
-	public static int getNeighborType(int type) {
+	public static int calculateRandomNeighborType(int type) {
+		if (type == Biomes.FIRST) {
+			Random rand = new Random();
+			return rand.nextInt(3);
+		}
 		int amount = Biomes.probabilityNeighbor.length;
 		Random rand = new Random();
 		
