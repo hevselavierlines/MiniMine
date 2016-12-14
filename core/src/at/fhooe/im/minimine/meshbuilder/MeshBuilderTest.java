@@ -45,8 +45,8 @@ public class MeshBuilderTest extends ApplicationAdapter {
         Gdx.input.setInputProcessor(camController);
      
         ModelBuilder modelBuilder = new ModelBuilder();
-        model = modelBuilder.createSphere(2f, 2f, 2f, 20, 20, 
-//        model = modelBuilder.createBox(5f, 5f, 5f, 
+//        model = modelBuilder.createSphere(2f, 2f, 2f, 20, 20, 
+        model = modelBuilder.createBox(5f, 5f, 5f, 
           new Material(),
           Usage.Position | Usage.Normal | Usage.TextureCoordinates);
      
