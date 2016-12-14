@@ -1,4 +1,4 @@
-package at.fhooe.im.minimine;
+package at.fhooe.im.minimine.meshbuilder;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
@@ -93,6 +93,7 @@ public class MeshBuilderTest extends ApplicationAdapter {
 		} catch (OverwritingChunkException e) {
 			e.printStackTrace();
 		}
+    	
     	
     	
 //    	for (int i = 0; i < c.x; i++) {
