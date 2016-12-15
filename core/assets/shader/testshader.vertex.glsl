@@ -4,6 +4,7 @@ attribute vec3 a_normal;
 attribute vec2 a_texcoords;
 
 varying vec2 v_texCoord;
+varying vec3 v_normal;
 
 //our camera matrix
 uniform mat4 u_projTrans;
