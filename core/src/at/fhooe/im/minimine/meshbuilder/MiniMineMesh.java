@@ -5,7 +5,7 @@ package at.fhooe.im.minimine.meshbuilder;
  * @author Christine
  *
  */
-public class Mesh {
+public class MiniMineMesh {
 
 	/** 
 	 * Contains the vertices of the mesh.
@@ -34,7 +34,7 @@ public class Mesh {
 	private int faceSize;
 	
 	/** Constructor for a mesh object */
-	public Mesh() {
+	public MiniMineMesh() {
 		
 	}
 	

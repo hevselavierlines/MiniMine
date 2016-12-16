@@ -7,16 +7,16 @@ import at.fhooe.im.minimine.world.Chunk;
  * @author Christine
  *
  */
-public class MeshBuilder {
+public class MiniMineMeshBuilder {
 
 	/** Constructor for a MeshBuilder object */
-	public MeshBuilder() {
+	public MiniMineMeshBuilder() {
 		
 	}
 	
 	
-	public Mesh buildMesh(Chunk c) {
-		Mesh mesh = new Mesh();
+	public MiniMineMesh buildMesh(Chunk c) {
+		MiniMineMesh mesh = new MiniMineMesh();
 		mesh.setFaceSize(3);
 		mesh.setVertexSize(3);
 		

@@ -7,10 +7,10 @@ import com.badlogic.gdx.math.Vector3;
  * @author Christine
  *
  */
-public class QuadVtxBuilder extends AbstractQuadMeshBuilder {
+public class MiniMineQuadVtxBuilder extends MiniMineAbstractQuadMeshBuilder {
 
 	@Override
-	public Mesh create() {
+	public MiniMineMesh create() {
 		// TODO Auto-generated method stub
 		return null;
 	}

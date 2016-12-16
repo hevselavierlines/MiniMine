@@ -8,7 +8,7 @@ import com.badlogic.gdx.math.Vector3;
  * @author Christine
  *
  */
-public abstract class AbstractQuadMeshBuilder implements QuadMeshBuilder {
+public abstract class MiniMineAbstractQuadMeshBuilder implements MiniMineQuadMeshBuilder {
 
 	protected Vector3 normal;
 	

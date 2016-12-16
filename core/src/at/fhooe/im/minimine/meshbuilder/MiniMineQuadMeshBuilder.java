@@ -8,7 +8,7 @@ import com.badlogic.gdx.math.Vector3;
  * @author Christine
  *
  */
-public interface QuadMeshBuilder {
+public interface MiniMineQuadMeshBuilder {
 	
 	/** 
 	 * 
@@ -65,7 +65,7 @@ public interface QuadMeshBuilder {
 	 * 
 	 * @return
 	 */
-	public Mesh create();
+	public MiniMineMesh create();
 	
 	
 }

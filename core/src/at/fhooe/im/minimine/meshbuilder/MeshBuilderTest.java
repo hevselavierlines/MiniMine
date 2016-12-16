@@ -13,6 +13,7 @@ import com.badlogic.gdx.graphics.g3d.model.NodePart;
 import com.badlogic.gdx.graphics.g3d.shaders.DefaultShader;
 import com.badlogic.gdx.graphics.g3d.utils.CameraInputController;
 import com.badlogic.gdx.graphics.g3d.utils.DefaultTextureBinder;
+import com.badlogic.gdx.graphics.g3d.utils.MeshBuilder;
 import com.badlogic.gdx.graphics.g3d.utils.ModelBuilder;
 import com.badlogic.gdx.graphics.g3d.utils.RenderContext;
 
@@ -111,6 +112,9 @@ public class MeshBuilderTest extends ApplicationAdapter {
 //    			}
 //    		}
 //    	}
+    	
+    	MeshBuilder builder = new MeshBuilder();
+    	
     	
     	System.out.println("Hello World!");
     }
