@@ -2,14 +2,23 @@ package at.fhooe.im.minimine.meshbuilder;
 
 import at.fhooe.im.minimine.world.Chunk;
 
-public class MeshBuilder {
+/**
+ * 
+ * TODO not use this
+ * 
+ * @author Christine
+ *
+ */
+public class MiniMineMeshBuilder {
 
-	public MeshBuilder() {
+	/** Constructor for a MeshBuilder object */
+	public MiniMineMeshBuilder() {
 		
 	}
 	
-	public Mesh buildMesh(Chunk c) {
-		Mesh mesh = new Mesh();
+	
+	public MiniMineMesh buildMesh(Chunk c) {
+		MiniMineMesh mesh = new MiniMineMesh();
 		mesh.setFaceSize(3);
 		mesh.setVertexSize(3);
 		

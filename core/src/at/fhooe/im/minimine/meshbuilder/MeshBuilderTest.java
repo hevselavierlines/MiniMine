@@ -13,6 +13,7 @@ import com.badlogic.gdx.graphics.g3d.model.NodePart;
 import com.badlogic.gdx.graphics.g3d.shaders.DefaultShader;
 import com.badlogic.gdx.graphics.g3d.utils.CameraInputController;
 import com.badlogic.gdx.graphics.g3d.utils.DefaultTextureBinder;
+import com.badlogic.gdx.graphics.g3d.utils.MeshBuilder;
 import com.badlogic.gdx.graphics.g3d.utils.ModelBuilder;
 import com.badlogic.gdx.graphics.g3d.utils.RenderContext;
 
@@ -21,6 +22,11 @@ import at.fhooe.im.minimine.world.Chunk;
 import at.fhooe.im.minimine.world.World;
 import at.fhooe.im.minimine.world.block.DirtBlock;
 
+/**
+ * 
+ * @author Christine
+ *
+ */
 public class MeshBuilderTest extends ApplicationAdapter {
 	
 	private PerspectiveCamera cam;
@@ -84,6 +90,9 @@ public class MeshBuilderTest extends ApplicationAdapter {
     	model.dispose();
     }
 
+    /**
+     * 
+     */
     private void generateMesh() {
     	World world = new World("westeros");
     	Chunk c = new Chunk(0,0);
@@ -103,6 +112,8 @@ public class MeshBuilderTest extends ApplicationAdapter {
 //    			}
 //    		}
 //    	}
+    	
+    	
     	
     	System.out.println("Hello World!");
     }
