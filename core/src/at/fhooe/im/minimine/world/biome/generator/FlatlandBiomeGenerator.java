@@ -2,17 +2,11 @@ package at.fhooe.im.minimine.world.biome.generator;
 
 import java.util.Random;
 
-import at.fhooe.im.minimine.exception.ChunkNotExistingException;
 import at.fhooe.im.minimine.world.Chunk;
 import at.fhooe.im.minimine.world.World;
 import at.fhooe.im.minimine.world.block.DirtBlock;
 
 public class FlatlandBiomeGenerator extends AbstractBiomeGenerator {
-
-	public final static int NORTH_NEIGHBOUR = 1;
-	public final static int EAST_NEIGHBOUR = 2;
-	public final static int SOUTH_NEIGHBOUR = 3;
-	public final static int WEST_NEIGHBOUR = 4;
 	
 	@Override
 	public Chunk generateChunk(World w, int m, int n) {
