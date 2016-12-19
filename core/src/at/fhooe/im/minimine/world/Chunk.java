@@ -166,8 +166,13 @@ public class Chunk {
 	
 	public int getMaximumHeightAtChunkCoord(int x, int z) {
 		int y = 255;
-		while(this.getBlockTypeAtChunkCoord(x, y, z) == AirBlock.class) {
-			y--;
+		try {
+			while(this.getBlockTypeAtChunkCoord(x, y, z) == AirBlock.class) {
+				y--;
+			}
+		} catch (OutOfChunkBoundsException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		return y;
 	}

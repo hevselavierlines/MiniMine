@@ -20,6 +20,7 @@ import at.fhooe.im.minimine.exception.OutOfChunkBoundsException;
 import at.fhooe.im.minimine.exception.OverwritingChunkException;
 import at.fhooe.im.minimine.world.Chunk;
 import at.fhooe.im.minimine.world.World;
+import at.fhooe.im.minimine.world.biome.generator.FlatlandBiomeGenerator;
 import at.fhooe.im.minimine.world.block.DirtBlock;
 
 
@@ -71,35 +72,19 @@ public class ManuelTest extends ApplicationAdapter {
 		Gdx.gl.glEnable(GL20.GL_DEPTH_TEST);
 		
 		//mesh = genCube(true, true, true, true, true, true);
-		
-		Chunk chunk = new Chunk(0, 0);
-		chunk.fillChunkUp(DirtBlock.class, 3);
-		try {
-			chunk.setBlockAtChunkCoord(new DirtBlock(), 0, 4, 0);
-			chunk.setBlockAtChunkCoord(new DirtBlock(), 0, 4, -1);
-			chunk.setBlockAtChunkCoord(new DirtBlock(), 0, 4, 1);
-			chunk.setBlockAtChunkCoord(new DirtBlock(), -1, 4, -1);
-			chunk.setBlockAtChunkCoord(new DirtBlock(), 1, 4, -1);
-			chunk.setBlockAtChunkCoord(new DirtBlock(), 1, 4, 1);
-			chunk.setBlockAtChunkCoord(new DirtBlock(), -1, 4, 1);
-		} catch (OutOfChunkBoundsException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InstantiationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		World world = new World("MARS");
+		
+		
+		
 		try {
-			world.addChunk(chunk);
+			world.addChunk(new FlatlandBiomeGenerator().generateChunk(world, 0, 0));
+			world.addChunk(new FlatlandBiomeGenerator().generateChunk(world, 0, 1));
+			world.addChunk(new FlatlandBiomeGenerator().generateChunk(world, 0, -1));
 		} catch (OverwritingChunkException e) {
 			e.printStackTrace();
 		}
 		worldRenderer = new WorldRenderer(world, 10);
-		for(int i = -2; i <= 2; i++) {
+		for(int i = -1; i <= 1; i++) {
 			for(int j = -1; j <= 1; j++) {
 				worldRenderer.loadMeshAt(j, i);
 			}

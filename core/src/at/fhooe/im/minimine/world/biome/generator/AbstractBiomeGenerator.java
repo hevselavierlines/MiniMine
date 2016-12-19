@@ -1,3 +1,8 @@
+package at.fhooe.im.minimine.world.biome.generator;
+
+import at.fhooe.im.minimine.exception.ChunkNotExistingException;
+import at.fhooe.im.minimine.world.Chunk;
+import at.fhooe.im.minimine.world.World;
 
 public abstract class AbstractBiomeGenerator {
 

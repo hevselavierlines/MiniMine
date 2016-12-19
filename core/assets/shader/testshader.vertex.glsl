@@ -9,6 +9,7 @@ varying vec3 v_normal;
 //our camera matrix
 uniform mat4 u_projTrans;
 
+
 void main() {
 	v_texCoord = a_texcoords;
     gl_Position = u_projTrans * vec4(a_position, 1.0);
