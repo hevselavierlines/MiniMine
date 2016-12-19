@@ -164,6 +164,14 @@ public class Chunk {
 		return Chunk.convertChunkArrayCoordToGlobalCoord(this.pos.x, this.pos.y, chunkArrayCoord.X, y, chunkArrayCoord.Z);
 	}
 	
+	public int getMaximumHeightAtChunkCoord(int x, int z) {
+		int y = 255;
+		while(this.getBlockTypeAtChunkCoord(x, y, z) == AirBlock.class) {
+			y--;
+		}
+		return y;
+	}
+	
 	/**
 	 * Checks if the given coord x|y|z (internal coordinates) are in range
 	 * @param x

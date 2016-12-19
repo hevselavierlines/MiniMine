@@ -7,8 +7,13 @@ import at.fhooe.im.minimine.world.Chunk;
 import at.fhooe.im.minimine.world.World;
 import at.fhooe.im.minimine.world.block.DirtBlock;
 
-public class FlatlandBiomeGenerator implements IBiomeGenerator {
+public class FlatlandBiomeGenerator extends AbstractBiomeGenerator {
 
+	public final static int NORTH_NEIGHBOUR = 1;
+	public final static int EAST_NEIGHBOUR = 2;
+	public final static int SOUTH_NEIGHBOUR = 3;
+	public final static int WEST_NEIGHBOUR = 4;
+	
 	@Override
 	public Chunk generateChunk(World w, int m, int n) {
 		Chunk newChunk = new Chunk(m, n);
@@ -17,43 +22,43 @@ public class FlatlandBiomeGenerator implements IBiomeGenerator {
 		Chunk east = this.getEastNeighbour(w, m, n);
 		Chunk south = this.getSouthNeighbour(w, m, n);
 		Chunk west = this.getWestNeighbour(w, m, n);
+		int amountExistingNeighbours = getAmountExistingNeighbours(north, east, south, west);
 		
-		if(north == null && east == null && south == null && west == null) {
-			// first generated Chunk (spawn point of player)
+		int height = 0;
+		
+		int dividor = Chunk.CHUNK_SIZE_XZ * amountExistingNeighbours;
+		if (dividor == 0) {
 			Random random = new Random();
-			int height = random.nextInt(100) + 50;
-			newChunk.fillChunkUp(DirtBlock.class, height);
+			height = random.nextInt(100) + 50;
+		} else {
+			int summedHeight = 0;
+			if (north != null) {
+				for(int x = -16; x <= 16; x++) {
+					summedHeight += north.getMaximumHeightAtChunkCoord(x, -16);
+				}
+			}
+			if (east != null) {
+				for(int z = -16; z <= 16; z++) {
+					summedHeight += east.getMaximumHeightAtChunkCoord(-16, z);
+				}
+			}
+			if (south != null) {
+				for(int x = -16; x <= 16; x++) {
+					summedHeight += south.getMaximumHeightAtChunkCoord(x, 16);
+				}
+			}
+			if (west != null) {
+				for(int z = -16; z <= 16; z++) {
+					summedHeight += west.getMaximumHeightAtChunkCoord(16, z);
+				}
+			}
+			height = summedHeight / dividor;
 		}
-		// TODO Else
-		// TODO random ups and downs
-		return null;
 		
-	}
-	
-	private Chunk getNorthNeighbour(World w, int m, int n) {
-		return this.getChunk(w, m, n + 1);
-	}
-	
-	private Chunk getEastNeighbour(World w, int m, int n) {
-		return this.getChunk(w, m + 1, n);
-	}
-	
-	private Chunk getSouthNeighbour(World w, int m, int n) {
-		return this.getChunk(w, m, n - 1);
-	}
-	
-	private Chunk getWestNeighbour(World w, int m, int n) {
-		return this.getChunk(w, m - 1, n);
-	}
-	
-	private Chunk getChunk(World w, int m, int n) {
-		Chunk c = null; 
-		try {
-			c = w.getChunk(m, n);
-		} catch (ChunkNotExistingException e) {
-			return null;
-		}
-		return c;
+		newChunk.fillChunkUp(DirtBlock.class, height);
+
+		return newChunk;
+		
 	}
 	
 }
