@@ -4,6 +4,8 @@ import at.fhooe.im.minimine.world.Chunk;
 
 /**
  * 
+ * TODO not use this
+ * 
  * @author Christine
  *
  */

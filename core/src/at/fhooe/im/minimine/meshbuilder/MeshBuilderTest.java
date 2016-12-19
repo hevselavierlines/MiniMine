@@ -113,7 +113,6 @@ public class MeshBuilderTest extends ApplicationAdapter {
 //    		}
 //    	}
     	
-    	MeshBuilder builder = new MeshBuilder();
     	
     	
     	System.out.println("Hello World!");
