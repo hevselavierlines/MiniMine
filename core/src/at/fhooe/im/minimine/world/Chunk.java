@@ -14,6 +14,7 @@ public class Chunk {
 	
 	private Point pos;
 	private AbstractBlock[][][] blocks;
+	private int biomeId;
 	
 	/*
 	 * The position of the chunk is saved as grid position
@@ -46,9 +47,10 @@ public class Chunk {
 	/**
 	 * Creates a new chunk
 	 */
-	public Chunk(int m, int n) {
+	public Chunk(int m, int n, int biomeId) {
 		this.pos = new Point(m, n);
 		this.blocks = new AbstractBlock[Chunk.CHUNK_SIZE_XZ][Chunk.MAX_CHUNK_COORD_Y + 1][Chunk.CHUNK_SIZE_XZ];
+		this.biomeId = biomeId;
 		fillEmpty();
 	}
 	
@@ -58,6 +60,14 @@ public class Chunk {
 	 */
 	public Point getPosition() {
 		return this.pos;
+	}
+	
+	/**
+	 * Returns the biome of the chunk
+	 * @return
+	 */
+	public int getBiome() {
+		return this.biomeId;
 	}
 	
 	/**
