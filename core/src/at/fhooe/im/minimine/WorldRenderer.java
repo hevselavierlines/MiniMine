@@ -3,6 +3,7 @@ package at.fhooe.im.minimine;
 import java.awt.Point;
 
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.GL30;
 import com.badlogic.gdx.graphics.Mesh;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 
@@ -23,7 +24,7 @@ public class WorldRenderer {
 	private int bufferUsage;
 	private Point[] loadedPoints;
 	private Mesh[] loadedMeshes;
-	private World loadedChunks;
+	private World world;
 	private final int MAX_BUFFER;
 	private ChunkMeshGenerator cmg;
 	
@@ -42,7 +43,7 @@ public class WorldRenderer {
 		bufferUsage = 0;
 		loadedPoints = new Point[MAX_BUFFER];
 		loadedMeshes = new Mesh[MAX_BUFFER];
-		loadedChunks = _world;
+		world = _world;
 		cmg = new ChunkMeshGenerator();
 	}
 	
@@ -116,7 +117,7 @@ public class WorldRenderer {
 		Chunk chunk = null;
 		Mesh mesh = null;
 		try {
-			chunk = loadedChunks.getChunk(worldPos.x, worldPos.y);
+			chunk = world.getChunk(worldPos.x, worldPos.y);
 			
 			//TODO call here the real mesh generator
 			mesh = cmg.generateChunk(chunk, worldPos.x, worldPos.y);
@@ -127,7 +128,7 @@ public class WorldRenderer {
 			chunk = new Chunk(worldPos.x, worldPos.y);
 			chunk.fillChunkUp(DirtBlock.class, 5);
 			try {
-				loadedChunks.addChunk(chunk);
+				world.addChunk(chunk);
 			} catch (OverwritingChunkException e1) {
 				e1.printStackTrace();
 			}
@@ -144,6 +145,7 @@ public class WorldRenderer {
 	 * @return
 	 */
 	private int cleanUp() {
+		System.out.println("cleanUp");
 		int lastFreePos = 0;
 		for(int i = 0; i < MAX_BUFFER; i++) {
 			Point point = loadedPoints[i];

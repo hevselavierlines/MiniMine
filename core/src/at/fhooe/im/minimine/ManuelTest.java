@@ -12,6 +12,7 @@ import com.badlogic.gdx.graphics.PerspectiveCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.VertexAttribute;
 import com.badlogic.gdx.graphics.VertexAttributes.Usage;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g3d.utils.CameraInputController;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.utils.GdxRuntimeException;
@@ -65,6 +66,10 @@ public class ManuelTest extends ApplicationAdapter {
 	
 	private CameraInputController camController;
 	private WorldRenderer worldRenderer;
+	private final float[] LIGHT_POS = new float[] {0.0f, 255.0f, 0.0f};
+	private final float[] SPECULAR_COLOR = new float[] {0.8f, 0.8f, 0.8f};
+	private final float[] DIFFUSE_COLOR = new float[] {1.0f, 1.0f, 1.0f};
+	
 	Texture img;
 	
 	@Override
@@ -74,27 +79,55 @@ public class ManuelTest extends ApplicationAdapter {
 		//mesh = genCube(true, true, true, true, true, true);
 		World world = new World("MARS");
 		
-		
-		
-		try {
-			world.addChunk(new FlatlandBiomeGenerator().generateChunk(world, 0, 0));
-			world.addChunk(new FlatlandBiomeGenerator().generateChunk(world, 0, 1));
-			world.addChunk(new FlatlandBiomeGenerator().generateChunk(world, 0, -1));
-		} catch (OverwritingChunkException e) {
-			e.printStackTrace();
-		}
-		worldRenderer = new WorldRenderer(world, 10);
-		for(int i = -1; i <= 1; i++) {
-			for(int j = -1; j <= 1; j++) {
-				worldRenderer.loadMeshAt(j, i);
+//		try {
+//			
+//			
+//			Chunk chunk2 = new Chunk(0, -1);
+//			chunk2.fillChunkUp(DirtBlock.class, 40);
+//			world.addChunk(chunk2);
+//			
+//			Chunk chunk3 = new Chunk(0, 0);
+//			chunk3.fillChunkUp(DirtBlock.class, 60);
+//			world.addChunk(chunk3);
+//			
+//			Chunk chunk4 = new Chunk(0, 1);
+//			chunk4.fillChunkUp(DirtBlock.class, 80);
+//			world.addChunk(chunk4);
+//			
+//			Chunk chunk5 = new Chunk(0, 2);
+//			chunk5.fillChunkUp(DirtBlock.class, 100);
+//			world.addChunk(chunk5);
+			
+//			world.addChunk(new FlatlandBiomeGenerator().generateChunk(world, 0, -2));
+//			world.addChunk(new FlatlandBiomeGenerator().generateChunk(world, 0, 1));
+//			world.addChunk(new FlatlandBiomeGenerator().generateChunk(world, 0, -1));
+//			world.addChunk(new FlatlandBiomeGenerator().generateChunk(world, 0, 0));
+//		} catch (OverwritingChunkException e) {
+//			e.printStackTrace();
+//		}
+		worldRenderer = new WorldRenderer(world, 15);
+		int height = 10;
+		for(int i = -2; i <= 2; i++) {
+			try {
+				Chunk chunk = new Chunk(0, i);
+				chunk.fillChunkUp(DirtBlock.class, height);
+				height += 10;
+				world.addChunk(chunk);
+			} catch (OverwritingChunkException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 		}
+		worldRenderer.loadMeshAt(0, 0);
+//		for(int i = -1; i <= 1; i++) {
+//			worldRenderer.loadMeshAt(0, i);
+//		}
 		
 		//mesh = new ChunkMeshGenerator().generateChunk(chunk, 0, 0);
 		
 		shader = createMeshShader();
 		cam = new PerspectiveCamera(67, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        cam.position.set(0f, 200f, 0f);
+        cam.position.set(0f, 255f, 0f);
         cam.lookAt(0,0,0);
         cam.near = 1f;
         cam.far = 300f;
@@ -103,8 +136,8 @@ public class ManuelTest extends ApplicationAdapter {
         camController = new CameraInputController(cam);
         Gdx.input.setInputProcessor(camController);
         
-        img = new Texture("badlogic.jpg");
-  
+        img = new Texture("grasstexture.png");
+        
 	}
 
 	@Override
@@ -127,12 +160,13 @@ public class ManuelTest extends ApplicationAdapter {
 		//update the projection matrix so our triangles are rendered in 2D
 		shader.setUniformMatrix("u_projTrans", cam.combined);
 		
-		
 		Gdx.gl20.glActiveTexture(GL20.GL_TEXTURE0);
 		img.bind();
 
 		shader.setUniformi("s_texture", 0);
-
+		shader.setUniform3fv("u_lightPos", LIGHT_POS, 0, 3);
+		shader.setUniform3fv("u_diffuseColor", DIFFUSE_COLOR, 0, 3);
+		shader.setUniform3fv("u_specularColor", SPECULAR_COLOR, 0, 3);
 		worldRenderer.render(shader);
 		
 		shader.end();
@@ -152,7 +186,9 @@ public class ManuelTest extends ApplicationAdapter {
 
 	@Override
 	public void dispose() {
-		mesh.dispose();
+		if(mesh != null) {
+			mesh.dispose();
+		}
 		shader.dispose();
 	}
 }
