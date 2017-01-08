@@ -5,6 +5,7 @@ attribute vec2 a_texcoords;
 
 varying vec2 v_texCoord;
 varying vec3 v_normal;
+varying vec3 v_pos;
 
 //our camera matrix
 uniform mat4 u_projTrans;
@@ -12,6 +13,8 @@ uniform mat4 u_projTrans;
 
 void main() {
 	v_texCoord = a_texcoords;
-    gl_Position = u_projTrans * vec4(a_position, 1.0);
+	v_pos = a_position;
+	v_normal = a_normal;
+	gl_Position = u_projTrans * vec4(a_position, 1.0);
 }
 

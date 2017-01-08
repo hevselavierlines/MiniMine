@@ -78,45 +78,39 @@ public class ManuelTest extends ApplicationAdapter {
 		
 		//mesh = genCube(true, true, true, true, true, true);
 		World world = new World("MARS");
-		
-//		try {
-//			
-//			
-//			Chunk chunk2 = new Chunk(0, -1);
-//			chunk2.fillChunkUp(DirtBlock.class, 40);
-//			world.addChunk(chunk2);
-//			
-//			Chunk chunk3 = new Chunk(0, 0);
-//			chunk3.fillChunkUp(DirtBlock.class, 60);
-//			world.addChunk(chunk3);
-//			
-//			Chunk chunk4 = new Chunk(0, 1);
-//			chunk4.fillChunkUp(DirtBlock.class, 80);
-//			world.addChunk(chunk4);
-//			
-//			Chunk chunk5 = new Chunk(0, 2);
-//			chunk5.fillChunkUp(DirtBlock.class, 100);
-//			world.addChunk(chunk5);
+
+		try {
+			Chunk chunk1 = new Chunk(0, -2);
+			chunk1.fillChunkUp(DirtBlock.class, 10);
+			world.addChunk(chunk1);
+			
+			Chunk chunk2 = new Chunk(0, -1);
+			chunk2.fillChunkUp(DirtBlock.class, 20);
+			world.addChunk(chunk2);
+			
+			Chunk chunk3 = new Chunk(0, 0);
+			chunk3.fillChunkUp(DirtBlock.class, 30);
+			world.addChunk(chunk3);
+			
+			Chunk chunk4 = new Chunk(0, 1);
+			chunk4.fillChunkUp(DirtBlock.class, 40);
+			world.addChunk(chunk4);
+			
+			Chunk chunk5 = new Chunk(0, 2);
+			chunk5.fillChunkUp(DirtBlock.class, 50);
+			world.addChunk(chunk5);
 			
 //			world.addChunk(new FlatlandBiomeGenerator().generateChunk(world, 0, -2));
 //			world.addChunk(new FlatlandBiomeGenerator().generateChunk(world, 0, 1));
 //			world.addChunk(new FlatlandBiomeGenerator().generateChunk(world, 0, -1));
 //			world.addChunk(new FlatlandBiomeGenerator().generateChunk(world, 0, 0));
-//		} catch (OverwritingChunkException e) {
-//			e.printStackTrace();
-//		}
-		worldRenderer = new WorldRenderer(world, 15);
-		int height = 10;
+
+		} catch (OverwritingChunkException e) {
+			e.printStackTrace();
+		}
+		worldRenderer = new WorldRenderer(world, 10);
 		for(int i = -2; i <= 2; i++) {
-			try {
-				Chunk chunk = new Chunk(0, i);
-				chunk.fillChunkUp(DirtBlock.class, height);
-				height += 10;
-				world.addChunk(chunk);
-			} catch (OverwritingChunkException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			worldRenderer.loadMeshAt(0, i);
 		}
 		worldRenderer.loadMeshAt(0, 0);
 //		for(int i = -1; i <= 1; i++) {
