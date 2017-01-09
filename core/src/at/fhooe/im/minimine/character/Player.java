@@ -43,10 +43,11 @@ public class Player {
 	Camera cam;
 	InputManager inputManager;
 	//MovementController movementController;
-
+	private int timer;
 	float deltaX; 
 	float deltaY;
 	private Vector3 camOffset;
+	private float spdMod = 0.1f;
 	
 	public Player(Camera cam){
 		this.cam = cam;
@@ -79,71 +80,85 @@ public class Player {
 		direction.setZero();
 		Vector3 temp = new Vector3(0,0,0);
 		
-		deltaX = -inputManager.MouseDelta()[0] * degreesPerPixel;
-		deltaY = -inputManager.MouseDelta()[1] * degreesPerPixel;
+		deltaX = Math.min(-inputManager.MouseDelta()[0] * degreesPerPixel,5);
 		
+		deltaY = -inputManager.MouseDelta()[1] * degreesPerPixel;
+		if(deltaY>=0){
+			deltaY = Math.min(deltaY, 10);
+		}else if(deltaY < 0){
+			deltaY = Math.max(deltaY, -10);
+		}
+		//System.out.println(deltaX + "" + deltaY);
 		forward.rotate(up, deltaX).nor();
 		cam.rotateAround(position, up, deltaX);
 		right.set(forward).crs(up).nor();
 		if(!((forward.y<-0.95 && deltaY<0) || (forward.y > 0.95 && deltaY > 0))){
 			forward.rotate(right, deltaY);
+			cam.rotateAround(position,  right, deltaY);
 		}
 		if(inputManager.AnyKeyPressed() == inputManager.forward){
 			temp.set(forward);
 			direction.set(temp);
 			temp.setZero();
+			
 		}if(inputManager.AnyKeyPressed() == inputManager.backward){
 			temp.set(forward).scl(-1);	
-			direction.add(temp);
+			direction.set(temp);
 			temp.setZero();	
 		}if(inputManager.AnyKeyPressed() == inputManager.left){
 			temp.set(forward).crs(up).scl(-1);
-			direction.add(temp);
+			direction.set(temp);
 			temp.setZero();
 		}if(inputManager.AnyKeyPressed() == inputManager.right){
 			temp.set(forward).crs(up);	
-			direction.add(temp);
+			direction.set(temp);
 			temp.setZero();
-		}if(inputManager.AnyKeyPressed() == inputManager.cameraChange){
+		}if(inputManager.AnyKeyPressed() == inputManager.cameraChange && timer>10){
 			changeCamera();
 		}if(inputManager.AnyKeyPressed() == inputManager.reset ){
 			resetPlayer();
 		}
-		direction.nor();
+		
+		direction.nor().scl(0.3f).clamp(0, 0.5f);
 		position.add(new Vector3(direction.x, 0, direction.z));
-		//System.out.println(position);
+		cam.position.set(position);
+		cam.lookAt(new Vector3().set(position).add(forward));
+		
+		Matrix4 tempmat = new Matrix4();
+		tempmat.setToTranslation(new Vector3(direction.x, 0, direction.z));
 		for (int i= 0 ; i< instance.model.meshes.size; i++){
 			Mesh mesh = instance.model.meshes.get(i);
-			Matrix4 tempmat = new Matrix4();
-			Matrix4 _tempmat = new Matrix4();
-			System.out.println(up.toString());
+			//System.out.println(up.toString());
 			
 			tempmat.setToTranslation(new Vector3(direction.x,0,direction.z));
 			mesh.transform(tempmat);
 			tempmat.set(new Matrix4());
 		}
+		timer++;
 	}
 	public void render(ShaderProgram _shader) {
-		cam.lookAt(new Vector3().set(position).add(forward));
+		
 		if(camState){
 			camOffset = camOffsetFp;
-			cam.position.set((new Vector3().set(position)).add(camOffsetFp));
+			cam.position.add(camOffset);	
 			cam.update();
 		}else {
 			camOffsetTp = new Vector3().set(forward).scl(-4);
 			camOffset = camOffsetTp;
+			cam.position.add(camOffset);	
 			cam.update();	
 			for(int i = 0; i < instance.model.meshes.size; i++) {
 				Mesh mesh = instance.model.meshes.get(i);
 				mesh.render(_shader, GL20.GL_TRIANGLES, 0, mesh.getMaxVertices());
-			}
-			cam.position.set((new Vector3().set(position)).add(camOffset));
+			}		
 		}
+		
 	}
 	public void dispose(){
 		model.dispose();
 	}
 	public boolean changeCamera(){
+		timer=0;
 		camState = !camState;
 		//false for third person camera
 		//true for first person camera
