@@ -14,6 +14,7 @@ public class TNTBlock extends AbstractBlock {
 	
 	public static boolean isDestructable() {
 		return StoneBlock.destructable;
+
 	}
 
 }

@@ -25,6 +25,7 @@ import at.fhooe.im.minimine.exception.OutOfChunkBoundsException;
 import at.fhooe.im.minimine.exception.OverwritingChunkException;
 import at.fhooe.im.minimine.world.Chunk;
 import at.fhooe.im.minimine.world.World;
+import at.fhooe.im.minimine.world.biome.Biomes;
 import at.fhooe.im.minimine.world.biome.generator.FlatlandBiomeGenerator;
 import at.fhooe.im.minimine.world.block.DirtBlock;
 import at.fhooe.im.minimine.world.block.StoneBlock;
@@ -89,24 +90,26 @@ public class CharacterTest extends ApplicationAdapter {
 		
 		
 		try {
-			Chunk chunk1 = new Chunk(0, -2);
+			Chunk chunk1 = new Chunk(0, -2, Biomes.FLATLAND);
 			chunk1.fillChunkUp(DirtBlock.class, 10);
 			world.addChunk(chunk1);
 			
-			Chunk chunk2 = new Chunk(0, -1);
+			Chunk chunk2 = new Chunk(0, -1, Biomes.FLATLAND);
 			chunk2.fillChunkUp(DirtBlock.class, 20);
 			world.addChunk(chunk2);
 			
-			Chunk chunk3 = new Chunk(0, 0);
-			chunk3.fillChunkUp(StoneBlock.class, 30);
+
+			Chunk chunk3 = new Chunk(0, 0, Biomes.FLATLAND);
+			chunk3.fillChunkUp(DirtBlock.class, 30);
 			world.addChunk(chunk3);
 			
-			Chunk chunk4 = new Chunk(0, 1);
+			Chunk chunk4 = new Chunk(0, 1, Biomes.FLATLAND);
 			chunk4.fillChunkUp(DirtBlock.class, 40);
 			world.addChunk(chunk4);
 			
-			Chunk chunk5 = new Chunk(0, 2);
-			chunk5.fillChunkUp(TNTBlock.class, 50);
+
+			Chunk chunk5 = new Chunk(0, 2, Biomes.FLATLAND);
+			chunk5.fillChunkUp(DirtBlock.class, 50);
 			world.addChunk(chunk5);
 			
 //			world.addChunk(new FlatlandBiomeGenerator().generateChunk(world, 0, -2));

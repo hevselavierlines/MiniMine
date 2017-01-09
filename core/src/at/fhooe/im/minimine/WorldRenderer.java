@@ -11,6 +11,7 @@ import at.fhooe.im.minimine.exception.ChunkNotExistingException;
 import at.fhooe.im.minimine.exception.OverwritingChunkException;
 import at.fhooe.im.minimine.world.Chunk;
 import at.fhooe.im.minimine.world.World;
+import at.fhooe.im.minimine.world.biome.Biomes;
 import at.fhooe.im.minimine.world.block.DirtBlock;
 
 /**
@@ -125,7 +126,7 @@ public class WorldRenderer {
 			loadedPoints[bufferPos] = currPos;
 		} catch (ChunkNotExistingException e) {
 			//TODO generate new chunk
-			chunk = new Chunk(worldPos.x, worldPos.y);
+			chunk = new Chunk(worldPos.x, worldPos.y, Biomes.FLATLAND);
 			chunk.fillChunkUp(DirtBlock.class, 5);
 			try {
 				world.addChunk(chunk);

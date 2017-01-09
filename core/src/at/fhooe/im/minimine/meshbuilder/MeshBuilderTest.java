@@ -20,6 +20,7 @@ import com.badlogic.gdx.graphics.g3d.utils.RenderContext;
 import at.fhooe.im.minimine.exception.OverwritingChunkException;
 import at.fhooe.im.minimine.world.Chunk;
 import at.fhooe.im.minimine.world.World;
+import at.fhooe.im.minimine.world.biome.Biomes;
 import at.fhooe.im.minimine.world.block.DirtBlock;
 
 /**
@@ -95,7 +96,7 @@ public class MeshBuilderTest extends ApplicationAdapter {
      */
     private void generateMesh() {
     	World world = new World("westeros");
-    	Chunk c = new Chunk(0,0);
+    	Chunk c = new Chunk(0,0, Biomes.FLATLAND);
     	c.fillChunkUp(DirtBlock.class, Chunk.MAX_CHUNK_COORD_Y);
     	try {
 			world.addChunk(c);

@@ -5,14 +5,16 @@ import java.util.Random;
 public class Biomes {
 	public final static int FIRST = -1;
 	public final static int FLATLAND = 0;
-	public final static int HILLS = 1;
-	public final static int FOREST = 2;
+	public final static int UPHILL = 1;
+	public final static int DOWNHILL = 2;
+	public final static int FOREST = 3;
 	
 	private static byte[][] probabilityNeighbor = new byte[][] {
-		// FLATLAND,	HILLS,		FOREST
-		{  50,			15,			35 		},	// FLATLAND
-		{  70,			20,			10		},	// HILLS
-		{  25,			15,			60		}	// FOREST
+		// FLATLAND,	UPHILL,		DOWNHILL,	FOREST
+		{  	50,			15,			5,			30 		},	// FLATLAND
+		{  	20,			20,			50,			10		},	// UPHILL
+		{	50,			5,			5,			40		}, 	// DOWNHILL
+		{  	25,			15,			5,			55		}	// FOREST
 	};
 	
 	/**
