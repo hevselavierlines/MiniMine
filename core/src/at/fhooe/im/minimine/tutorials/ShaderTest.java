@@ -16,6 +16,8 @@ import com.badlogic.gdx.graphics.g3d.utils.DefaultTextureBinder;
 import com.badlogic.gdx.graphics.g3d.utils.ModelBuilder;
 import com.badlogic.gdx.graphics.g3d.utils.RenderContext;
 
+import at.fhooe.im.minimine.render.shader.ColorShader;
+
 public class ShaderTest extends ApplicationAdapter {
 
 	private PerspectiveCamera cam;
@@ -51,7 +53,7 @@ public class ShaderTest extends ApplicationAdapter {
         renderable.worldTransform.idt();
           
         renderContext = new RenderContext(new DefaultTextureBinder(DefaultTextureBinder.WEIGHTED, 1));
-        shader = new TestShader();
+        shader = new ColorShader();
         shader.init();
     }
      

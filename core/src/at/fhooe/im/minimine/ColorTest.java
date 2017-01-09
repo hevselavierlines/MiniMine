@@ -24,6 +24,7 @@ public class ColorTest extends ApplicationAdapter {
 	   public Model model;
 	   public Array<ModelInstance> instances = new Array<ModelInstance>();
 	   public ModelBatch modelBatch;
+	   private float cubeSize = 1.5f; // 2f
 
 	   @Override
 	   public void create () {
@@ -37,10 +38,11 @@ public class ColorTest extends ApplicationAdapter {
 	       camController = new CameraInputController(cam);
 	       Gdx.input.setInputProcessor(camController);
 
-	       ModelBuilder modelBuilder = new ModelBuilder();
-	       model = modelBuilder.createSphere(2f, 2f, 2f, 20, 20,
+	       ModelBuilder modelBuilder = new ModelBuilder(); 
+	       model = modelBuilder.createBox(cubeSize, cubeSize, cubeSize, 
+//	       model = modelBuilder.createSphere(2f, 2f, 2f, 20, 20,
 	         new Material(),
-	         Usage.Position | Usage.Normal | Usage.TextureCoordinates);
+	         Usage.Position | Usage.Normal | Usage.TextureCoordinates | Usage.ColorPacked);
 
 	       for (int x = -5; x <= 5; x+=2) {
 	         for (int z = -5; z<=5; z+=2) {
