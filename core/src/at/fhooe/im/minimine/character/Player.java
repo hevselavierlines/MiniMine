@@ -128,6 +128,14 @@ public class Player {
 		tempmat.setToTranslation(new Vector3(direction.x, 0, direction.z));
 		for (int i= 0 ; i< instance.model.meshes.size; i++){
 			Mesh mesh = instance.model.meshes.get(i);
+<<<<<<< HEAD
+=======
+			Matrix4 tempmat = new Matrix4();
+			Matrix4 _tempmat = new Matrix4();
+			//System.out.println(up.toString());
+			
+			tempmat.setToTranslation(new Vector3(direction.x,0,direction.z));
+>>>>>>> 54237dc4924a4649cb3b8502535bf3144ac1ce23
 			mesh.transform(tempmat);
 			tempmat.set(new Matrix4());
 		}
