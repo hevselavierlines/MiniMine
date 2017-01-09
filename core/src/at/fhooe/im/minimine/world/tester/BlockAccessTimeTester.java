@@ -5,6 +5,7 @@ import java.util.Random;
 import at.fhooe.im.minimine.exception.OverwritingChunkException;
 import at.fhooe.im.minimine.world.Chunk;
 import at.fhooe.im.minimine.world.World;
+import at.fhooe.im.minimine.world.biome.Biomes;
 import at.fhooe.im.minimine.world.block.AirBlock;
 import at.fhooe.im.minimine.world.block.DirtBlock;
 import at.fhooe.im.minimine.world.block.StoneBlock;
@@ -99,7 +100,7 @@ public class BlockAccessTimeTester {
 		BlockAccessTimeTester.amountFramesBelow5000Fps = 0l;
 		
 		BlockAccessTimeTester.w = new World("Test");
-		Chunk c = new Chunk(0, 0);
+		Chunk c = new Chunk(0, 0, Biomes.FLATLAND);
 		
 		Random r = new Random();
 		int block = 0;
