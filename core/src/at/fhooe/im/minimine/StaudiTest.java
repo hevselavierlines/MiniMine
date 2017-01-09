@@ -23,11 +23,12 @@ import at.fhooe.im.minimine.world.Chunk;
 import at.fhooe.im.minimine.world.World;
 import at.fhooe.im.minimine.world.biome.Biomes;
 import at.fhooe.im.minimine.world.biome.generator.FlatlandBiomeGenerator;
+import at.fhooe.im.minimine.world.biome.generator.UphillBiomeGenerator;
 import at.fhooe.im.minimine.world.block.DirtBlock;
 
 
 
-public class ManuelTest extends ApplicationAdapter {
+public class StaudiTest extends ApplicationAdapter {
 	protected static ShaderProgram createMeshShader() {
 		ShaderProgram.pedantic = false;
 		ShaderProgram shader = null;
@@ -77,35 +78,12 @@ public class ManuelTest extends ApplicationAdapter {
 	public void create() {
 		Gdx.gl.glEnable(GL20.GL_DEPTH_TEST);
 		
-		//mesh = genCube(true, true, true, true, true, true);
-		World world = new World("MARS");
+		World world = new World("Alpha Centauri");
 
 		try {
-			Chunk chunk1 = new Chunk(0, -2, Biomes.FLATLAND);
-			chunk1.fillChunkUp(DirtBlock.class, 10);
-			world.addChunk(chunk1);
+			world.addChunk(new FlatlandBiomeGenerator().generateChunk(world, 0, 0));
 			
-			Chunk chunk2 = new Chunk(0, -1, Biomes.FLATLAND);
-			chunk2.fillChunkUp(DirtBlock.class, 20);
-			world.addChunk(chunk2);
-			
-			Chunk chunk3 = new Chunk(0, 0, Biomes.FLATLAND);
-			chunk3.fillChunkUp(DirtBlock.class, 30);
-			world.addChunk(chunk3);
-			
-			Chunk chunk4 = new Chunk(0, 1, Biomes.FLATLAND);
-			chunk4.fillChunkUp(DirtBlock.class, 40);
-			world.addChunk(chunk4);
-			
-			Chunk chunk5 = new Chunk(0, 2, Biomes.FLATLAND);
-			chunk5.fillChunkUp(DirtBlock.class, 50);
-			world.addChunk(chunk5);
-			
-//			world.addChunk(new FlatlandBiomeGenerator().generateChunk(world, 0, -2));
-//			world.addChunk(new FlatlandBiomeGenerator().generateChunk(world, 0, 1));
-//			world.addChunk(new FlatlandBiomeGenerator().generateChunk(world, 0, -1));
-//			world.addChunk(new FlatlandBiomeGenerator().generateChunk(world, 0, 0));
-
+			world.addChunk(new UphillBiomeGenerator().generateChunk(world, 1, 0));
 		} catch (OverwritingChunkException e) {
 			e.printStackTrace();
 		}
@@ -114,11 +92,6 @@ public class ManuelTest extends ApplicationAdapter {
 			worldRenderer.loadMeshAt(0, i);
 		}
 		worldRenderer.loadMeshAt(0, 0);
-//		for(int i = -1; i <= 1; i++) {
-//			worldRenderer.loadMeshAt(0, i);
-//		}
-		
-		//mesh = new ChunkMeshGenerator().generateChunk(chunk, 0, 0);
 		
 		shader = createMeshShader();
 		cam = new PerspectiveCamera(67, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
