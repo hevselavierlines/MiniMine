@@ -29,8 +29,8 @@ public class ChunkMeshGenerator {
 								vertices.add(0.0f);
 								vertices.add(1.0f);
 								vertices.add(0.0f);
-								vertices.add(0.4f);
-								vertices.add(0.2f);
+								vertices.add(0.166f);
+								vertices.add(0.0f);
 								
 								vertices.add(x - 0.5f + absX);
 								vertices.add(y + 0.5f);
@@ -38,8 +38,8 @@ public class ChunkMeshGenerator {
 								vertices.add(0.0f);
 								vertices.add(1.0f);
 								vertices.add(0.0f);
-								vertices.add(0.4f);
-								vertices.add(0.4f);
+								vertices.add(0.166f);
+								vertices.add(1.0f);
 								
 								vertices.add(x + 0.5f + absX);
 								vertices.add(y + 0.5f);
@@ -47,8 +47,8 @@ public class ChunkMeshGenerator {
 								vertices.add(0.0f);
 								vertices.add(1.0f);
 								vertices.add(0.0f);
-								vertices.add(0.2f);
-								vertices.add(0.4f);
+								vertices.add(0.333f);
+								vertices.add(1.0f);
 								
 								vertices.add(x - 0.5f + absX);
 								vertices.add(y + 0.5f);
@@ -56,8 +56,8 @@ public class ChunkMeshGenerator {
 								vertices.add(0.0f);
 								vertices.add(1.0f);
 								vertices.add(0.0f);
-								vertices.add(0.4f);
-								vertices.add(0.2f);
+								vertices.add(0.166f);
+								vertices.add(0.0f);
 								
 								vertices.add(x + 0.5f + absX);
 								vertices.add(y + 0.5f);
@@ -65,8 +65,8 @@ public class ChunkMeshGenerator {
 								vertices.add(0.0f);
 								vertices.add(1.0f);
 								vertices.add(0.0f);
-								vertices.add(0.2f);
-								vertices.add(0.4f);
+								vertices.add(0.333f);
+								vertices.add(1.0f);
 								
 								vertices.add(x + 0.5f + absX);
 								vertices.add(y + 0.5f);
@@ -74,10 +74,10 @@ public class ChunkMeshGenerator {
 								vertices.add(0.0f);
 								vertices.add(1.0f);
 								vertices.add(0.0f);
-								vertices.add(0.2f);
-								vertices.add(0.2f);
+								vertices.add(0.333f);
+								vertices.add(0.0f);
 							}
-							
+							//check below
 							if(y <= 0 || _chunk.getBlockTypeAtChunkCoord(x, y - 1, z) == AirBlock.class) {
 								vertices.add(x - 0.5f + absX);
 								vertices.add(y - 0.5f);
@@ -94,8 +94,8 @@ public class ChunkMeshGenerator {
 								vertices.add(0.0f);
 								vertices.add(-1.0f);
 								vertices.add(0.0f);
-								vertices.add(0.2f);
-								vertices.add(0.2f);
+								vertices.add(0.166f);
+								vertices.add(1.0f);
 								
 								vertices.add(x - 0.5f + absX);
 								vertices.add(y - 0.5f);
@@ -104,7 +104,7 @@ public class ChunkMeshGenerator {
 								vertices.add(-1.0f);
 								vertices.add(0.0f);
 								vertices.add(0.0f);
-								vertices.add(0.2f);
+								vertices.add(1.0f);
 								
 								vertices.add(x - 0.5f + absX);
 								vertices.add(y - 0.5f);
@@ -121,7 +121,7 @@ public class ChunkMeshGenerator {
 								vertices.add(0.0f);
 								vertices.add(-1.0f);
 								vertices.add(0.0f);
-								vertices.add(0.2f);
+								vertices.add(0.166f);
 								vertices.add(0.0f);
 								
 								vertices.add(x + 0.5f + absX);
@@ -130,9 +130,10 @@ public class ChunkMeshGenerator {
 								vertices.add(0.0f);
 								vertices.add(-1.0f);
 								vertices.add(0.0f);
-								vertices.add(0.2f);
-								vertices.add(0.2f);
+								vertices.add(0.166f);
+								vertices.add(1.0f);
 							}
+							//check front
 							if(z <= -16 || _chunk.getBlockTypeAtChunkCoord(x, y, z - 1) ==  AirBlock.class) {
 								vertices.add(x - 0.5f + absX);
 								vertices.add(y - 0.5f);
@@ -140,8 +141,8 @@ public class ChunkMeshGenerator {
 								vertices.add(0.0f);
 								vertices.add(0.0f);
 								vertices.add(-1.0f);
-								vertices.add(0.4f);
-								vertices.add(0.4f);
+								vertices.add(0.333f);
+								vertices.add(1.0f);
 								
 								vertices.add(x - 0.5f + absX);
 								vertices.add(y + 0.5f);
@@ -149,8 +150,8 @@ public class ChunkMeshGenerator {
 								vertices.add(0.0f);
 								vertices.add(0.0f);
 								vertices.add(-1.0f);
-								vertices.add(0.4f);
-								vertices.add(0.6f);
+								vertices.add(0.333f);
+								vertices.add(0.0f);
 								
 								vertices.add(x + 0.5f + absX);
 								vertices.add(y + 0.5f);
@@ -158,8 +159,8 @@ public class ChunkMeshGenerator {
 								vertices.add(0.0f);
 								vertices.add(0.0f);
 								vertices.add(-1.0f);
-								vertices.add(0.6f);
-								vertices.add(0.6f);
+								vertices.add(0.5f);
+								vertices.add(0.0f);
 								
 								vertices.add(x - 0.5f + absX);
 								vertices.add(y - 0.5f);
@@ -167,8 +168,8 @@ public class ChunkMeshGenerator {
 								vertices.add(0.0f);
 								vertices.add(0.0f);
 								vertices.add(-1.0f);
-								vertices.add(0.4f);
-								vertices.add(0.4f);
+								vertices.add(0.333f);
+								vertices.add(1.0f);
 								
 								vertices.add(x + 0.5f + absX);
 								vertices.add(y + 0.5f);
@@ -176,8 +177,8 @@ public class ChunkMeshGenerator {
 								vertices.add(0.0f);
 								vertices.add(0.0f);
 								vertices.add(-1.0f);
-								vertices.add(0.6f);
-								vertices.add(0.6f);
+								vertices.add(0.5f);
+								vertices.add(0.0f);
 								
 								vertices.add(x + 0.5f + absX);
 								vertices.add(y - 0.5f);
@@ -185,10 +186,10 @@ public class ChunkMeshGenerator {
 								vertices.add(0.0f);
 								vertices.add(0.0f);
 								vertices.add(-1.0f);
-								vertices.add(0.6f);
-								vertices.add(0.4f);
+								vertices.add(0.5f);
+								vertices.add(1.0f);
 							}
-							
+							//check back
 							if(z >= 16 || _chunk.getBlockTypeAtChunkCoord(x, y, z + 1) == AirBlock.class) {
 								vertices.add(x - 0.5f + absX);
 								vertices.add(y - 0.5f);
@@ -196,8 +197,8 @@ public class ChunkMeshGenerator {
 								vertices.add(0.0f);
 								vertices.add(0.0f);
 								vertices.add(1.0f);
-								vertices.add(0.4f);
-								vertices.add(0.4f);
+								vertices.add(0.5f);
+								vertices.add(1.0f);
 								
 								vertices.add(x + 0.5f + absX);
 								vertices.add(y - 0.5f);
@@ -205,8 +206,8 @@ public class ChunkMeshGenerator {
 								vertices.add(0.0f);
 								vertices.add(0.0f);
 								vertices.add(1.0f);
-								vertices.add(0.4f);
-								vertices.add(0.6f);
+								vertices.add(0.666f);
+								vertices.add(1.0f);
 								
 								vertices.add(x + 0.5f + absX);
 								vertices.add(y + 0.5f);
@@ -214,8 +215,8 @@ public class ChunkMeshGenerator {
 								vertices.add(0.0f);
 								vertices.add(0.0f);
 								vertices.add(1.0f);
-								vertices.add(0.6f);
-								vertices.add(0.6f);
+								vertices.add(0.666f);
+								vertices.add(0.0f);
 								
 								vertices.add(x - 0.5f + absX);
 								vertices.add(y - 0.5f);
@@ -223,8 +224,8 @@ public class ChunkMeshGenerator {
 								vertices.add(0.0f);
 								vertices.add(0.0f);
 								vertices.add(1.0f);
-								vertices.add(0.4f);
-								vertices.add(0.4f);
+								vertices.add(0.5f);
+								vertices.add(1.0f);
 								
 								vertices.add(x + 0.5f + absX);
 								vertices.add(y + 0.5f);
@@ -232,8 +233,8 @@ public class ChunkMeshGenerator {
 								vertices.add(0.0f);
 								vertices.add(0.0f);
 								vertices.add(1.0f);
-								vertices.add(0.6f);
-								vertices.add(0.6f);
+								vertices.add(0.666f);
+								vertices.add(0.0f);
 								
 								vertices.add(x - 0.5f + absX);
 								vertices.add(y + 0.5f);
@@ -241,10 +242,10 @@ public class ChunkMeshGenerator {
 								vertices.add(0.0f);
 								vertices.add(0.0f);
 								vertices.add(1.0f);
-								vertices.add(0.6f);
-								vertices.add(0.4f);
+								vertices.add(0.5f);
+								vertices.add(0.0f);
 							}
-							
+							//check left
 							if(x <= -16 || _chunk.getBlockTypeAtChunkCoord(x - 1, y, z) == AirBlock.class) {
 								vertices.add(x - 0.5f + absX);
 								vertices.add(y - 0.5f);
@@ -252,8 +253,8 @@ public class ChunkMeshGenerator {
 								vertices.add(-1.0f);
 								vertices.add(0.0f);
 								vertices.add(0.0f);
-								vertices.add(0.6f);
-								vertices.add(0.6f);
+								vertices.add(0.666f);
+								vertices.add(1.0f);
 								
 								vertices.add(x - 0.5f + absX);
 								vertices.add(y - 0.5f);
@@ -261,8 +262,8 @@ public class ChunkMeshGenerator {
 								vertices.add(-1.0f);
 								vertices.add(0.0f);
 								vertices.add(0.0f);
-								vertices.add(0.6f);
-								vertices.add(0.8f);
+								vertices.add(0.8333f);
+								vertices.add(1.0f);
 								
 								vertices.add(x - 0.5f + absX);
 								vertices.add(y + 0.5f);
@@ -270,8 +271,8 @@ public class ChunkMeshGenerator {
 								vertices.add(-1.0f);
 								vertices.add(0.0f);
 								vertices.add(0.0f);
-								vertices.add(0.8f);
-								vertices.add(0.8f);
+								vertices.add(0.8333f);
+								vertices.add(0.0f);
 								
 								vertices.add(x - 0.5f + absX);
 								vertices.add(y - 0.5f);
@@ -279,8 +280,8 @@ public class ChunkMeshGenerator {
 								vertices.add(-1.0f);
 								vertices.add(0.0f);
 								vertices.add(0.0f);
-								vertices.add(0.6f);
-								vertices.add(0.6f);
+								vertices.add(0.666f);
+								vertices.add(1.0f);
 								
 								vertices.add(x - 0.5f + absX);
 								vertices.add(y + 0.5f);
@@ -288,8 +289,8 @@ public class ChunkMeshGenerator {
 								vertices.add(-1.0f);
 								vertices.add(0.0f);
 								vertices.add(0.0f);
-								vertices.add(0.8f);
-								vertices.add(0.8f);
+								vertices.add(0.8333f);
+								vertices.add(0.0f);
 								
 								vertices.add(x - 0.5f + absX);
 								vertices.add(y + 0.5f);
@@ -297,8 +298,8 @@ public class ChunkMeshGenerator {
 								vertices.add(-1.0f);
 								vertices.add(0.0f);
 								vertices.add(0.0f);
-								vertices.add(0.8f);
-								vertices.add(0.6f);
+								vertices.add(0.666f);
+								vertices.add(0.0f);
 							}
 							
 							if(x >= 16 || _chunk.getBlockTypeAtChunkCoord(x + 1, y, z) == AirBlock.class) {
@@ -308,8 +309,8 @@ public class ChunkMeshGenerator {
 								vertices.add(+1.0f);
 								vertices.add(0.0f);
 								vertices.add(0.0f);
-								vertices.add(0.8f);
-								vertices.add(0.8f);
+								vertices.add(0.8333f);
+								vertices.add(1.0f);
 								
 								vertices.add(x + 0.5f + absX);
 								vertices.add(y + 0.5f);
@@ -317,8 +318,26 @@ public class ChunkMeshGenerator {
 								vertices.add(1.0f);
 								vertices.add(0.0f);
 								vertices.add(0.0f);
+								vertices.add(0.8333f);
+								vertices.add(0.0f);
+								
+								vertices.add(x + 0.5f + absX);
+								vertices.add(y + 0.5f);
+								vertices.add(z + 0.5f + absZ);
 								vertices.add(1.0f);
-								vertices.add(0.8f);
+								vertices.add(0.0f);
+								vertices.add(0.0f);
+								vertices.add(1.0f);
+								vertices.add(0.0f);
+								
+								vertices.add(x + 0.5f + absX);
+								vertices.add(y - 0.5f);
+								vertices.add(z - 0.5f + absZ);
+								vertices.add(1.0f);
+								vertices.add(0.0f);
+								vertices.add(0.0f);
+								vertices.add(0.8333f);
+								vertices.add(1.0f);
 								
 								vertices.add(x + 0.5f + absX);
 								vertices.add(y + 0.5f);
@@ -331,30 +350,12 @@ public class ChunkMeshGenerator {
 								
 								vertices.add(x + 0.5f + absX);
 								vertices.add(y - 0.5f);
-								vertices.add(z - 0.5f + absZ);
-								vertices.add(1.0f);
-								vertices.add(0.0f);
-								vertices.add(0.0f);
-								vertices.add(0.8f);
-								vertices.add(0.8f);
-								
-								vertices.add(x + 0.5f + absX);
-								vertices.add(y + 0.5f);
 								vertices.add(z + 0.5f + absZ);
 								vertices.add(1.0f);
 								vertices.add(0.0f);
 								vertices.add(0.0f);
 								vertices.add(1.0f);
-								vertices.add(1.0f);
-								
-								vertices.add(x + 0.5f + absX);
-								vertices.add(y - 0.5f);
-								vertices.add(z + 0.5f + absZ);
-								vertices.add(1.0f);
 								vertices.add(0.0f);
-								vertices.add(0.0f);
-								vertices.add(0.8f);
-								vertices.add(1.0f);
 							}
 						}
 						

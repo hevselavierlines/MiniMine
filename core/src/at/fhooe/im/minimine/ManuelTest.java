@@ -12,6 +12,7 @@ import com.badlogic.gdx.graphics.PerspectiveCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.VertexAttribute;
 import com.badlogic.gdx.graphics.VertexAttributes.Usage;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g3d.utils.CameraInputController;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.utils.GdxRuntimeException;
@@ -77,7 +78,7 @@ public class ManuelTest extends ApplicationAdapter {
 		
 		//mesh = genCube(true, true, true, true, true, true);
 		World world = new World("MARS");
-		
+
 		try {
 			Chunk chunk1 = new Chunk(0, -2);
 			chunk1.fillChunkUp(DirtBlock.class, 10);
@@ -103,6 +104,7 @@ public class ManuelTest extends ApplicationAdapter {
 //			world.addChunk(new FlatlandBiomeGenerator().generateChunk(world, 0, 1));
 //			world.addChunk(new FlatlandBiomeGenerator().generateChunk(world, 0, -1));
 //			world.addChunk(new FlatlandBiomeGenerator().generateChunk(world, 0, 0));
+
 		} catch (OverwritingChunkException e) {
 			e.printStackTrace();
 		}
@@ -110,6 +112,10 @@ public class ManuelTest extends ApplicationAdapter {
 		for(int i = -2; i <= 2; i++) {
 			worldRenderer.loadMeshAt(0, i);
 		}
+		worldRenderer.loadMeshAt(0, 0);
+//		for(int i = -1; i <= 1; i++) {
+//			worldRenderer.loadMeshAt(0, i);
+//		}
 		
 		//mesh = new ChunkMeshGenerator().generateChunk(chunk, 0, 0);
 		
@@ -124,8 +130,8 @@ public class ManuelTest extends ApplicationAdapter {
         camController = new CameraInputController(cam);
         Gdx.input.setInputProcessor(camController);
         
-        img = new Texture("badlogic.jpg");
-  
+        img = new Texture("grasstexture.png");
+        
 	}
 
 	@Override
