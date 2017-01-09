@@ -2,6 +2,7 @@ package at.fhooe.im.minimine.world.tester;
 
 import at.fhooe.im.minimine.world.Chunk;
 import at.fhooe.im.minimine.world.World;
+import at.fhooe.im.minimine.world.biome.Biomes;
 import at.fhooe.im.minimine.world.block.DirtBlock;
 import at.fhooe.im.minimine.world.block.StoneBlock;
 
@@ -12,11 +13,11 @@ public class GlobalCoordToChunkToBlockTester {
 		World w = new World("Test");
 		
 		System.out.println("Creating Chunks ...");
-		Chunk c00 = new Chunk(0, 0);
-		Chunk c10 = new Chunk(1, 0);
-		Chunk c11 = new Chunk(1, 1);
-		Chunk c0n1 = new Chunk(0, -1);
-		Chunk cn1n1 = new Chunk(-1, -1);
+		Chunk c00 = new Chunk(0, 0, Biomes.FLATLAND);
+		Chunk c10 = new Chunk(1, 0, Biomes.FLATLAND);
+		Chunk c11 = new Chunk(1, 1, Biomes.FLATLAND);
+		Chunk c0n1 = new Chunk(0, -1, Biomes.FLATLAND);
+		Chunk cn1n1 = new Chunk(-1, -1, Biomes.FLATLAND);
 		try {
 			System.out.println("Adding test-blocks to chunk   0 |  0 ...");
 			c00.setBlockAtChunkCoord(new DirtBlock(), 0, 0, 0);			// should be global coord:   0 |  0 |   0
