@@ -130,7 +130,7 @@ public class ManuelTest extends ApplicationAdapter {
         camController = new CameraInputController(cam);
         Gdx.input.setInputProcessor(camController);
         
-        img = new Texture("grasstexture.png");
+        img = new Texture("textures.png");
         
 	}
 

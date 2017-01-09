@@ -27,6 +27,8 @@ import at.fhooe.im.minimine.world.Chunk;
 import at.fhooe.im.minimine.world.World;
 import at.fhooe.im.minimine.world.biome.generator.FlatlandBiomeGenerator;
 import at.fhooe.im.minimine.world.block.DirtBlock;
+import at.fhooe.im.minimine.world.block.StoneBlock;
+import at.fhooe.im.minimine.world.block.TNTBlock;
 
 
 
@@ -96,7 +98,7 @@ public class CharacterTest extends ApplicationAdapter {
 			world.addChunk(chunk2);
 			
 			Chunk chunk3 = new Chunk(0, 0);
-			chunk3.fillChunkUp(DirtBlock.class, 30);
+			chunk3.fillChunkUp(StoneBlock.class, 30);
 			world.addChunk(chunk3);
 			
 			Chunk chunk4 = new Chunk(0, 1);
@@ -104,7 +106,7 @@ public class CharacterTest extends ApplicationAdapter {
 			world.addChunk(chunk4);
 			
 			Chunk chunk5 = new Chunk(0, 2);
-			chunk5.fillChunkUp(DirtBlock.class, 50);
+			chunk5.fillChunkUp(TNTBlock.class, 50);
 			world.addChunk(chunk5);
 			
 //			world.addChunk(new FlatlandBiomeGenerator().generateChunk(world, 0, -2));
@@ -131,7 +133,7 @@ public class CharacterTest extends ApplicationAdapter {
 		//camController = new CameraInputController(cam);
         //Gdx.input.setInputProcessor(camController);
         
-        img = new Texture("badlogic.jpg");
+        img = new Texture("textures.png");
   
 	}
 

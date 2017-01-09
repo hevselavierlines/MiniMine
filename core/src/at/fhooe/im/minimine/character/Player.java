@@ -50,7 +50,7 @@ public class Player {
 	
 	public Player(Camera cam){
 		this.cam = cam;
-		position = new Vector3(0f, 30f, 0f);
+		position = new Vector3(0f, 50f, 0f);
 		up = new Vector3(0,1,0);
 		right = new Vector3();
 		collisionCheck = new Ray();
@@ -116,7 +116,7 @@ public class Player {
 			Mesh mesh = instance.model.meshes.get(i);
 			Matrix4 tempmat = new Matrix4();
 			Matrix4 _tempmat = new Matrix4();
-			System.out.println(up.toString());
+			//System.out.println(up.toString());
 			
 			tempmat.setToTranslation(new Vector3(direction.x,0,direction.z));
 			mesh.transform(tempmat);
