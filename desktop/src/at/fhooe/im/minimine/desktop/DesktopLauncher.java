@@ -11,11 +11,12 @@ import at.fhooe.im.minimine.WireFrameRenderTest;
 import at.fhooe.im.minimine.meshbuilder.MeshBuilderTest;
 import at.fhooe.im.minimine.tutorials.CubeTest;
 import at.fhooe.im.minimine.tutorials.ShaderTest;
+import at.fhooe.im.minimine.ui.UITest;
 
 public class DesktopLauncher {
 	public static void main (String[] arg) {
-		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
-		new LwjglApplication(new CharacterTest(), config);
-		
+		LwjglApplicationConfiguration config = new 	LwjglApplicationConfiguration();
+
+		new LwjglApplication(new UITest(), config);
 	}
 }
