@@ -21,6 +21,7 @@ import com.badlogic.gdx.utils.GdxRuntimeException;
 import at.fhooe.im.minimine.character.InputManager;
 import at.fhooe.im.minimine.character.MovementController;
 import at.fhooe.im.minimine.character.Player;
+import at.fhooe.im.minimine.exception.ChunkNotExistingException;
 import at.fhooe.im.minimine.exception.OutOfChunkBoundsException;
 import at.fhooe.im.minimine.exception.OverwritingChunkException;
 import at.fhooe.im.minimine.world.Chunk;
@@ -30,6 +31,7 @@ import at.fhooe.im.minimine.world.biome.generator.FlatlandBiomeGenerator;
 import at.fhooe.im.minimine.world.block.DirtBlock;
 import at.fhooe.im.minimine.world.block.StoneBlock;
 import at.fhooe.im.minimine.world.block.TNTBlock;
+import at.fhooe.im.minimine.world.block.WoodBlock;
 
 
 
@@ -95,7 +97,7 @@ public class CharacterTest extends ApplicationAdapter {
 			world.addChunk(chunk1);
 			
 			Chunk chunk2 = new Chunk(0, -1, Biomes.FLATLAND);
-			chunk2.fillChunkUp(DirtBlock.class, 20);
+			chunk2.fillChunkUp(StoneBlock.class, 20);
 			world.addChunk(chunk2);
 			
 
@@ -104,12 +106,12 @@ public class CharacterTest extends ApplicationAdapter {
 			world.addChunk(chunk3);
 			
 			Chunk chunk4 = new Chunk(0, 1, Biomes.FLATLAND);
-			chunk4.fillChunkUp(DirtBlock.class, 40);
+			chunk4.fillChunkUp(WoodBlock.class, 40);
 			world.addChunk(chunk4);
 			
 
 			Chunk chunk5 = new Chunk(0, 2, Biomes.FLATLAND);
-			chunk5.fillChunkUp(DirtBlock.class, 50);
+			chunk5.fillChunkUp(TNTBlock.class, 50);
 			world.addChunk(chunk5);
 			
 //			world.addChunk(new FlatlandBiomeGenerator().generateChunk(world, 0, -2));
@@ -132,7 +134,7 @@ public class CharacterTest extends ApplicationAdapter {
 		
 		cam = new PerspectiveCamera(67, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		
-		player = new Player(cam);
+		player = new Player(cam, world);
 		//camController = new CameraInputController(cam);
         //Gdx.input.setInputProcessor(camController);
         
@@ -170,7 +172,14 @@ public class CharacterTest extends ApplicationAdapter {
 		shader.setUniform3fv("u_specularColor", SPECULAR_COLOR, 0, 3);
 		player.render(shader);
 		worldRenderer.render(shader);
-		player.Move(inputManager);
+		try {
+			player.Move(inputManager);
+		} catch (OutOfChunkBoundsException e) {
+			player.resetPlayer();
+		} catch (ChunkNotExistingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		shader.end();
 	}

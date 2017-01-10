@@ -12,6 +12,7 @@ import at.fhooe.im.minimine.world.block.AirBlock;
 import at.fhooe.im.minimine.world.block.DirtBlock;
 import at.fhooe.im.minimine.world.block.StoneBlock;
 import at.fhooe.im.minimine.world.block.TNTBlock;
+import at.fhooe.im.minimine.world.block.WoodBlock;
 
 public class ChunkMeshGenerator {
 	public Mesh generateChunk(Chunk _chunk, int xPos, int zPos) {
@@ -35,6 +36,9 @@ public class ChunkMeshGenerator {
 							} else if(type == TNTBlock.class) {
 								startY = 0.5f;
 								endY = 0.75f;
+							} else if(type == WoodBlock.class) {
+								startY = 0.75f;
+								endY = 1.0f;
 							}
 							//check above
 							if(y < 0 || _chunk.getBlockTypeAtChunkCoord(x, y + 1, z) == AirBlock.class) {
