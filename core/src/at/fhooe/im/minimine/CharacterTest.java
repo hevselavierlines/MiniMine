@@ -21,6 +21,7 @@ import com.badlogic.gdx.utils.GdxRuntimeException;
 import at.fhooe.im.minimine.character.InputManager;
 import at.fhooe.im.minimine.character.MovementController;
 import at.fhooe.im.minimine.character.Player;
+import at.fhooe.im.minimine.exception.ChunkNotExistingException;
 import at.fhooe.im.minimine.exception.OutOfChunkBoundsException;
 import at.fhooe.im.minimine.exception.OverwritingChunkException;
 import at.fhooe.im.minimine.world.Chunk;
@@ -133,7 +134,7 @@ public class CharacterTest extends ApplicationAdapter {
 		
 		cam = new PerspectiveCamera(67, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		
-		player = new Player(cam);
+		player = new Player(cam, world);
 		//camController = new CameraInputController(cam);
         //Gdx.input.setInputProcessor(camController);
         
@@ -171,7 +172,14 @@ public class CharacterTest extends ApplicationAdapter {
 		shader.setUniform3fv("u_specularColor", SPECULAR_COLOR, 0, 3);
 		player.render(shader);
 		worldRenderer.render(shader);
-		player.Move(inputManager);
+		try {
+			player.Move(inputManager);
+		} catch (OutOfChunkBoundsException e) {
+			player.resetPlayer();
+		} catch (ChunkNotExistingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		shader.end();
 	}

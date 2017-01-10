@@ -22,6 +22,10 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.math.collision.Ray;
 
 import at.fhooe.im.minimine.character.InputManager;
+import at.fhooe.im.minimine.exception.ChunkNotExistingException;
+import at.fhooe.im.minimine.exception.OutOfChunkBoundsException;
+import at.fhooe.im.minimine.world.World;
+import at.fhooe.im.minimine.world.block.AirBlock;
 
 public class Player {
 
@@ -48,10 +52,12 @@ public class Player {
 	float deltaY;
 	private Vector3 camOffset;
 	private float spdMod = 0.1f;
+	public World world;
 	
-	public Player(Camera cam){
+	public Player(Camera cam, World world){
 		this.cam = cam;
-		position = new Vector3(0f, 30f, 0f);
+		this.world = world;
+		position = new Vector3(0f, 40f, 0f);
 		up = new Vector3(0,1,0);
 		right = new Vector3();
 		collisionCheck = new Ray();
@@ -73,10 +79,9 @@ public class Player {
 			tempmat.setTranslation(position);
 			mesh.transform(tempmat);
 			
-		}
-		
+		}		
 	}
-	public void Move(InputManager inputManager){
+	public void Move(InputManager inputManager) throws OutOfChunkBoundsException, ChunkNotExistingException{
 		direction.setZero();
 		Vector3 temp = new Vector3(0,0,0);
 		
@@ -88,7 +93,6 @@ public class Player {
 		}else if(deltaY < 0){
 			deltaY = Math.max(deltaY, -10);
 		}
-		//System.out.println(deltaX + "" + deltaY);
 		forward.rotate(up, deltaX).nor();
 		cam.rotateAround(position, up, deltaX);
 		right.set(forward).crs(up).nor();
@@ -118,19 +122,25 @@ public class Player {
 		}if(inputManager.AnyKeyPressed() == inputManager.reset ){
 			resetPlayer();
 		}
-		
+		if(!world.getBlockTypeAtGlobalCoord((int)(position.x+direction.x), (int)(position.y+direction.y), (int)(position.z+direction.z)).getName().equals("at.fhooe.im.minimine.world.block.AirBlock")){
+			System.out.println(world.getBlockTypeAtGlobalCoord((int)(position.x+direction.x), (int)(position.y+direction.y), (int)(position.z+direction.z)).getName());
+			//direction.nor().scl(0.3f).clamp(0, 0.5f);
+			direction.set(0,0,0);
+			
+		}
 		direction.nor().scl(0.3f).clamp(0, 0.5f);
-		position.add(new Vector3(direction.x, 0, direction.z));
+		position.add(new Vector3(direction.x, direction.y, direction.z));
 		cam.position.set(position);
 		cam.lookAt(new Vector3().set(position).add(forward));
 		
+		//System.out.println(world.getBlockTypeAtGlobalCoord((int) (position.x + direction.x),(int) (position.y+direction.y),(int) (position.z + direction.z)));
 		Matrix4 tempmat = new Matrix4();
-		tempmat.setToTranslation(new Vector3(direction.x, 0, direction.z));
+		tempmat.setToTranslation(new Vector3(direction.x, direction.y, direction.z));
 		for (int i= 0 ; i< instance.model.meshes.size; i++){
 			Mesh mesh = instance.model.meshes.get(i);
 			//System.out.println(up.toString());
 			
-			tempmat.setToTranslation(new Vector3(direction.x,0,direction.z));
+			tempmat.setToTranslation(new Vector3(direction.x,direction.y,direction.z));
 			mesh.transform(tempmat);
 			tempmat.set(new Matrix4());
 		}
@@ -150,9 +160,8 @@ public class Player {
 			for(int i = 0; i < instance.model.meshes.size; i++) {
 				Mesh mesh = instance.model.meshes.get(i);
 				mesh.render(_shader, GL20.GL_TRIANGLES, 0, mesh.getMaxVertices());
-			}		
+			}
 		}
-		
 	}
 	public void dispose(){
 		model.dispose();
@@ -164,7 +173,7 @@ public class Player {
 		//true for first person camera
 		return camState;
 	}
-	private void resetPlayer(){
+	public void resetPlayer(){
 		forward.set(1,0,0);
 		position.set(0,50,0);
 	}
