@@ -1,0 +1,33 @@
+MiniMineItems.png
+size: 256, 256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+helmet
+  rotate: false
+  xy: 229, 1
+  size: 12, 11
+  orig: 16, 17
+  offset: 2, 4
+  index: -1
+SelectionFrame
+  rotate: false
+  xy: 185, 1
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: -1
+Sword
+  rotate: false
+  xy: 211, 1
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+UIBar
+  rotate: false
+  xy: 1, 1
+  size: 182, 22
+  orig: 182, 22
+  offset: 0, 0
+  index: -1
