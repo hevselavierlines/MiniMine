@@ -27,6 +27,9 @@ public abstract class MiniMineAbstractTriangleMeshBuilder implements MiniMineTri
 	protected ArrayList<Float> vertices;
 	protected ArrayList<Integer> indices;
 	
+	/** a variable that determines if indizes will be added to the mesh when created or not*/
+	boolean addIndices = false;
+	
 	public MiniMineAbstractTriangleMeshBuilder() {
 		vertices = new ArrayList<Float>();
 		indices = new ArrayList<Integer>();
