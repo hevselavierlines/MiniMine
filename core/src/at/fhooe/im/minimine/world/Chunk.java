@@ -144,7 +144,7 @@ public class Chunk {
 			try {
 				this.blocks[x][y][z] = (AbstractBlock) blocktype.newInstance();
 			} catch (Exception e) {
-				System.out.println("Awesom-o: DRECK!");
+				e.printStackTrace();
 				System.exit(69);
 			}
 		}
