@@ -134,7 +134,7 @@ public class CharacterTest extends ApplicationAdapter {
 		
 		cam = new PerspectiveCamera(67, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		
-		player = new Player(cam, world);
+		//player = new Player(cam, world, worldRenderer);
 		//camController = new CameraInputController(cam);
         //Gdx.input.setInputProcessor(camController);
         
