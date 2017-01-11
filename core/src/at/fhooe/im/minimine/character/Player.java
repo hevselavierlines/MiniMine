@@ -120,11 +120,11 @@ public class Player {
 		}if(inputManager.AnyKeyPressed() == inputManager.cameraChange && timer>10){
 			changeCamera();
 		}if(inputManager.AnyKeyPressed() == inputManager.reset ){
-			resetPlayer();
+			//resetPlayer();
 		}
 		direction.nor().scl(0.3f).clamp(0, 0.5f);
 		if(!world.getBlockTypeAtGlobalCoord((int)(position.x+direction.x), (int)(position.y+direction.y), (int)(position.z+direction.z)).getName().equals("at.fhooe.im.minimine.world.block.AirBlock")){
-			System.out.println(world.getBlockTypeAtGlobalCoord((int)(position.x+direction.x), (int)(position.y+direction.y), (int)(position.z+direction.z)).getName());
+			//System.out.println(world.getBlockTypeAtGlobalCoord((int)(position.x+direction.x), (int)(position.y+direction.y), (int)(position.z+direction.z)).getName());
 			//direction.nor().scl(0.3f).clamp(0, 0.5f);
 			direction.set(0,0,0);
 			
@@ -179,5 +179,6 @@ public class Player {
 	public void resetPlayer(){
 		forward.set(1,0,0);
 		position.set(0,50,0);
+		cam.position.set(position);
 	}
 }
