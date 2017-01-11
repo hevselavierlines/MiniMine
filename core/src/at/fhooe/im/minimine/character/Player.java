@@ -102,33 +102,34 @@ public class Player {
 		}
 		if(inputManager.AnyKeyPressed() == inputManager.forward){
 			temp.set(forward);
-			direction.set(temp);
+			direction.set(temp).nor();
 			temp.setZero();
 			
 		}if(inputManager.AnyKeyPressed() == inputManager.backward){
 			temp.set(forward).scl(-1);	
-			direction.set(temp);
+			direction.set(temp).nor();
 			temp.setZero();	
 		}if(inputManager.AnyKeyPressed() == inputManager.left){
 			temp.set(forward).crs(up).scl(-1);
-			direction.set(temp);
+			direction.set(temp).nor();
 			temp.setZero();
 		}if(inputManager.AnyKeyPressed() == inputManager.right){
 			temp.set(forward).crs(up);	
-			direction.set(temp);
+			direction.set(temp).nor();
 			temp.setZero();
 		}if(inputManager.AnyKeyPressed() == inputManager.cameraChange && timer>10){
 			changeCamera();
 		}if(inputManager.AnyKeyPressed() == inputManager.reset ){
 			resetPlayer();
 		}
+		direction.nor().scl(0.3f).clamp(0, 0.5f);
 		if(!world.getBlockTypeAtGlobalCoord((int)(position.x+direction.x), (int)(position.y+direction.y), (int)(position.z+direction.z)).getName().equals("at.fhooe.im.minimine.world.block.AirBlock")){
 			System.out.println(world.getBlockTypeAtGlobalCoord((int)(position.x+direction.x), (int)(position.y+direction.y), (int)(position.z+direction.z)).getName());
 			//direction.nor().scl(0.3f).clamp(0, 0.5f);
 			direction.set(0,0,0);
 			
 		}
-		direction.nor().scl(0.3f).clamp(0, 0.5f);
+		
 		position.add(new Vector3(direction.x, direction.y, direction.z));
 		cam.position.set(position);
 		cam.lookAt(new Vector3().set(position).add(forward));
@@ -150,6 +151,7 @@ public class Player {
 		
 		if(camState){
 			camOffset = camOffsetFp;
+			cam.position.add(new Vector3(0,1,0));
 			cam.position.add(camOffset);	
 			cam.update();
 		}else {
