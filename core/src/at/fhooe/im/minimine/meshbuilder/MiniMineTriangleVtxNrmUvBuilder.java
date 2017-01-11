@@ -47,12 +47,13 @@ public class MiniMineTriangleVtxNrmUvBuilder extends MiniMineAbstractTriangleMes
 		float[] meshData = getVertices();
 		short[] indicesData = getIndices();
 		vertices.clear();
-		Mesh mesh = new Mesh(true, meshData.length, indicesData.length, 
+//		Mesh mesh = new Mesh(true, meshData.length, indicesData.length, 
+		Mesh mesh = new Mesh(true, meshData.length, 0, 
 				new VertexAttribute(Usage.Position, 3, "a_position"), 
 				new VertexAttribute(Usage.Normal, 3, "a_normal"), 
 				new VertexAttribute(Usage.TextureCoordinates, 2, "a_texcoords"));
 		mesh.setVertices(meshData);
-		mesh.setIndices(indicesData);
+//		mesh.setIndices(indicesData);
 		return mesh;
 	}
 

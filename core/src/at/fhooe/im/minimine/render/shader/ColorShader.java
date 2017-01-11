@@ -61,5 +61,5 @@ public class ColorShader implements Shader {
 	@Override
 	public boolean canRender(Renderable instance) {
 		return true;
-}
+	}
 }
