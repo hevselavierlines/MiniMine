@@ -22,6 +22,6 @@ import at.fhooe.im.minimine.ui.UITest;
 public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
-		new LwjglApplication(new ManuelTest2(), config);
+		new LwjglApplication(new Main(), config);
 	}
 }

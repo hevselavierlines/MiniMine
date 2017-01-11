@@ -24,6 +24,7 @@ import at.fhooe.im.minimine.world.World;
 import at.fhooe.im.minimine.world.biome.Biomes;
 import at.fhooe.im.minimine.world.biome.generator.FlatlandBiomeGenerator;
 import at.fhooe.im.minimine.world.block.DirtBlock;
+import at.fhooe.im.minimine.world.block.StoneBlock;
 
 
 
@@ -86,7 +87,7 @@ public class ManuelTest2 extends ApplicationAdapter {
 			world.addChunk(chunk1);
 			
 			Chunk chunk2 = new Chunk(0, -1, Biomes.FLATLAND);
-			chunk2.fillChunkUp(DirtBlock.class, 20);
+			chunk2.fillChunkUp(StoneBlock.class, 20);
 			world.addChunk(chunk2);
 			
 			Chunk chunk3 = new Chunk(0, 0, Biomes.FLATLAND);

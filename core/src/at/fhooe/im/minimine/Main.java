@@ -33,6 +33,7 @@ import at.fhooe.im.minimine.world.Chunk;
 import at.fhooe.im.minimine.world.World;
 import at.fhooe.im.minimine.world.biome.Biomes;
 import at.fhooe.im.minimine.world.biome.generator.FlatlandBiomeGenerator;
+import at.fhooe.im.minimine.world.biome.generator.UphillBiomeGenerator;
 import at.fhooe.im.minimine.world.block.DirtBlock;
 import at.fhooe.im.minimine.world.block.StoneBlock;
 import at.fhooe.im.minimine.world.block.TNTBlock;
@@ -82,7 +83,7 @@ public class Main extends ApplicationAdapter implements Telegraph {
 	
 	private CameraInputController camController;
 	private FirstPersonCameraController fpcc;
-	private WorldRenderer worldRenderer;
+	private WorldRenderer2 worldRenderer;
 	private final float[] LIGHT_POS = new float[] {0.0f, 255.0f, 0.0f};
 	private final float[] SPECULAR_COLOR = new float[] {0.8f, 0.8f, 0.8f};
 	private final float[] DIFFUSE_COLOR = new float[] {1.0f, 1.0f, 1.0f};
@@ -101,6 +102,8 @@ public class Main extends ApplicationAdapter implements Telegraph {
 			Chunk chunk1 = new Chunk(0, -2, Biomes.FLATLAND);
 			chunk1.fillChunkUp(DirtBlock.class, 10);
 			world.addChunk(chunk1);
+//			world.addChunk(new FlatlandBiomeGenerator().generateChunk(world, 1, 0));
+//			world.addChunk(new UphillBiomeGenerator().generateChunk(world, 2, 0));
 			
 			Chunk chunk2 = new Chunk(0, -1, Biomes.FLATLAND);
 			chunk2.fillChunkUp(StoneBlock.class, 20);
@@ -127,7 +130,7 @@ public class Main extends ApplicationAdapter implements Telegraph {
 		} catch (OverwritingChunkException e) {
 			e.printStackTrace();
 		}
-		worldRenderer = new WorldRenderer(world, 10);
+		worldRenderer = new WorldRenderer2(world, 10);
 		for(int i = -2; i <= 2; i++) {
 			worldRenderer.loadMeshAt(0, i);
 		}
