@@ -14,17 +14,17 @@ import com.badlogic.gdx.utils.viewport.ExtendViewport;
 
 public class UI {
 	
-	Stage stage;
+	public Stage stage;
 	TextureAtlas textureAtlas;
-	Group uiBar;
+	public Group uiBar;
 	float selectionFrameXPos = 0.0f;
 	float uiBarWidth;
 	float uiBarHeight;
-	Image selectionFrame;
+	public Image selectionFrame;
 	
 
 	
-	void setupUI() {
+	public void setupUI() {
 		
 		
 		uiBarWidth = Gdx.graphics.getWidth() - Gdx.graphics.getWidth()/5;

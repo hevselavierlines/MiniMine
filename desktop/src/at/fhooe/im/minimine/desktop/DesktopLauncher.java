@@ -4,6 +4,8 @@ import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 
 import at.fhooe.im.minimine.ColorTest;
+import at.fhooe.im.minimine.CharacterTest;
+import at.fhooe.im.minimine.Main;
 import at.fhooe.im.minimine.ManuelTest;
 import at.fhooe.im.minimine.ManuelTest2;
 import at.fhooe.im.minimine.MiniMine;
