@@ -437,15 +437,15 @@ public class MiniMineMeshGenerator {
 										builder.setNormal(nBack);								
 										builder.setUvCoords(0.5f, endY);
 										builder.addVertex(new Vector3(x + f.x + chunkWorldCoordX, y + f.y, z + f.z + chunkWorldCoordZ));
-										builder.setUvCoords(0.5f, startY);
+										builder.setUvCoords(0.666f, endY);
 										builder.addVertex(new Vector3(x + e.x + chunkWorldCoordX, y + e.y, z + e.z + chunkWorldCoordZ));
-										builder.setUvCoords(0.3333333f, startY);
+										builder.setUvCoords(0.666f, startY);
 										builder.addVertex(new Vector3(x + h.x + chunkWorldCoordX, y + h.y, z + h.z + chunkWorldCoordZ));
 										builder.setUvCoords(0.5f, endY);
 										builder.addVertex(new Vector3(x + f.x + chunkWorldCoordX, y + f.y, z + f.z + chunkWorldCoordZ));
-										builder.setUvCoords(0.3333333f, startY);
+										builder.setUvCoords(0.666f, startY);
 										builder.addVertex(new Vector3(x + h.x + chunkWorldCoordX, y + h.y, z + h.z + chunkWorldCoordZ));
-										builder.setUvCoords(0.3333333f, endY);
+										builder.setUvCoords(0.5f, startY);
 										builder.addVertex(new Vector3(x + g.x + chunkWorldCoordX, y + g.y, z + g.z + chunkWorldCoordZ));
 
 
@@ -473,17 +473,17 @@ public class MiniMineMeshGenerator {
 
 										// x+1 --> right face
 										builder.setNormal(nRight);								
-										builder.setUvCoords(1f, endY);
+										builder.setUvCoords(0.666f, endY);
 										builder.addVertex(new Vector3(x + b.x + chunkWorldCoordX, y + b.y, z + b.z + chunkWorldCoordZ));
-										builder.setUvCoords(1f, startY);
+										builder.setUvCoords(0.8333f, endY);
 										builder.addVertex(new Vector3(x + f.x + chunkWorldCoordX, y + f.y, z + f.z + chunkWorldCoordZ));
-										builder.setUvCoords(0.833333f, startY);
+										builder.setUvCoords(0.8333f, startY);
 										builder.addVertex(new Vector3(x + g.x + chunkWorldCoordX, y + g.y, z + g.z + chunkWorldCoordZ));
-										builder.setUvCoords(1f, endY);
+										builder.setUvCoords(0.666f, endY);
 										builder.addVertex(new Vector3(x + b.x + chunkWorldCoordX, y + b.y, z + b.z + chunkWorldCoordZ));
-										builder.setUvCoords(0.833333f, startY);
+										builder.setUvCoords(0.8333f, startY);
 										builder.addVertex(new Vector3(x + g.x + chunkWorldCoordX, y + g.y, z + g.z + chunkWorldCoordZ));
-										builder.setUvCoords(0.833333f, endY);
+										builder.setUvCoords(0.666f, startY);
 										builder.addVertex(new Vector3(x + c.x + chunkWorldCoordX, y + c.y, z + c.z + chunkWorldCoordZ));
 
 									}
