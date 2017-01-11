@@ -6,6 +6,7 @@ import com.badlogic.gdx.assets.loaders.AssetLoader;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Mesh;
 import com.badlogic.gdx.graphics.PerspectiveCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.VertexAttributes;
 import com.badlogic.gdx.graphics.VertexAttributes.Usage;
 import com.badlogic.gdx.graphics.g3d.Material;
@@ -23,12 +24,13 @@ import com.badlogic.gdx.graphics.g3d.utils.ModelBuilder;
 import com.badlogic.gdx.graphics.g3d.utils.RenderContext;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.utils.GdxRuntimeException;
 
+import at.fhooe.im.minimine.WorldRenderer;
 import at.fhooe.im.minimine.exception.OverwritingChunkException;
 import at.fhooe.im.minimine.render.shader.ColorShader;
 import at.fhooe.im.minimine.world.Chunk;
 import at.fhooe.im.minimine.world.World;
-import at.fhooe.im.minimine.world.biome.Biomes;
 import at.fhooe.im.minimine.world.block.DirtBlock;
 
 /**
@@ -36,20 +38,27 @@ import at.fhooe.im.minimine.world.block.DirtBlock;
  * @author Christine
  *
  */
-public class MeshBuilderTest extends ApplicationAdapter {
+public class MeshBuilderTest2 extends ApplicationAdapter {
 
 	private PerspectiveCamera cam;
 	private CameraInputController camController;
-	private ColorShader shader;
+//	private ColorShader shader;
 	private RenderContext renderContext;
 	private Model model;
 	private Renderable renderable;
 	
+	public ShaderProgram program;
+	int u_projTrans;
+	int u_worldTrans;
+	
 	private Mesh mesh;
+	Texture texture; 
+	
 
 	@Override
 	public void create () {
 		generateMesh();
+		createShaderProgramm();
 
 		cam = new PerspectiveCamera(67, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		cam.position.set(2f, 2f, 2f);
@@ -73,30 +82,46 @@ public class MeshBuilderTest extends ApplicationAdapter {
 		renderable.worldTransform.idt();
 
 		renderContext = new RenderContext(new DefaultTextureBinder(DefaultTextureBinder.WEIGHTED, 1));
-		shader = new ColorShader();
-//		shader = new DefaultShader(renderable);
-		shader.init();
+		texture = new Texture("grasstexture.png");
 	}
 
 	@Override
 	public void render () {
 		camController.update();
-
 		Gdx.gl.glViewport(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
 		
-		mesh.render(shader.program, GL20.GL_TRIANGLES);
+		//enable blending, for alpha
+		Gdx.gl.glEnable(GL20.GL_BLEND);
+		Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
+		
+		//start the shader before setting any uniforms
+		program.begin();
+		
+		
+		//update the projection matrix so our triangles are rendered in 2D
+		program.setUniformMatrix("u_projTrans", cam.combined);
+		
+		Gdx.gl20.glActiveTexture(GL20.GL_TEXTURE0);
+		texture.bind();
 
-		renderContext.begin();
-		shader.begin(cam, renderContext);
-		shader.render(renderable);
-		shader.end();
-		renderContext.end();
+//		program.setUniformi("s_texture", 0);
+		if(mesh != null) {
+			System.out.println("mesh != null");
+			mesh = new ModelBuilder().createBox(5f, 5f, 5f, 
+	                new Material(TextureAttribute.createDiffuse(texture)),
+	                Usage.Position | Usage.Normal | Usage.TextureCoordinates).meshes.first();
+//			mesh = new MeshBuilder()
+			mesh.render(program, GL20.GL_TRIANGLES, 0, mesh.getMaxVertices());
+		}
+		
+		program.end();
 	}
 
 	@Override
 	public void dispose () {
-		shader.dispose();
+		program.dispose();
+//		shader.dispose();
 		model.dispose();
 	}
 
@@ -120,7 +145,6 @@ public class MeshBuilderTest extends ApplicationAdapter {
 		//		}
 		//    	
 
-
 		//    	for (int i = 0; i < c.x; i++) {
 		//    		for (int j = 0; j < c.y; j++) {
 		//    			for (int k = 0; k < c.z; k++) {
@@ -133,6 +157,15 @@ public class MeshBuilderTest extends ApplicationAdapter {
 
 		System.out.println("Hello World!");
 	}
-    
+	
+	private void createShaderProgramm() {
+		String vert = Gdx.files.internal("shader/colorshader.vertex.glsl").readString();
+        String frag = Gdx.files.internal("shader/colorshader.fragment.glsl").readString();
+        program = new ShaderProgram(vert, frag);
+        if (!program.isCompiled())
+            throw new GdxRuntimeException(program.getLog());
+        u_projTrans = program.getUniformLocation("u_projViewTrans");
+        u_worldTrans = program.getUniformLocation("u_worldTrans");
+	}
 
 }
