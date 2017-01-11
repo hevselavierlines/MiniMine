@@ -151,6 +151,7 @@ public class Player {
 		
 		if(camState){
 			camOffset = camOffsetFp;
+			cam.position.add(new Vector3().set(forward).scl(-0.9f));
 			cam.position.add(new Vector3(0,1,0));
 			cam.position.add(camOffset);	
 			cam.update();
