@@ -116,7 +116,9 @@ public class MiniMineMeshGenerator {
 	}
 
 	/**
-	 * 
+	 * TODO
+	 * This method is in progress and should generate a mesh for the 
+	 * whole world at once.
 	 * @param world
 	 * @return
 	 */
@@ -151,217 +153,7 @@ public class MiniMineMeshGenerator {
 									mBuilder.addVertex(new Vector3(x + 0.5f + absX, y + 0.5f, z + 0.5f + absZ));										
 									mBuilder.addVertex(new Vector3(x - 0.5f + absX, y + 0.5f, z - 0.5f + absZ));
 
-
-									// check if the neighbour block is air or the edge of the chunk has been reached
-									if(y < 0 || chunk.getBlockTypeAtChunkCoord(x, y + 1, z) == AirBlock.class) {
-
-										// front face
-										mBuilder.addVertex(new Vector3(x - 0.5f + absX, y + 0.5f, z - 0.5f + absZ));
-										mBuilder.addVertex(new Vector3(x - 0.5f + absX, y + 0.5f, z + 0.5f + absZ));										
-										mBuilder.addVertex(new Vector3(x + 0.5f + absX, y + 0.5f, z + 0.5f + absZ));										
-										mBuilder.addVertex(new Vector3(x - 0.5f + absX, y + 0.5f, z - 0.5f + absZ));										
-										mBuilder.addVertex(new Vector3(x + 0.5f + absX, y + 0.5f, z + 0.5f + absZ));
-										mBuilder.addVertex(new Vector3(x + 0.5f + absX, y + 0.5f, z - 0.5f + absZ));				
-									}
-
-									if(y <= 0 || chunk.getBlockTypeAtChunkCoord(x, y - 1, z) == AirBlock.class) {
-
-										mBuilder.addVertex(new Vector3(x - 0.5f + absX, y - 0.5f, z - 0.5f + absZ));
-										mBuilder.addVertex(new Vector3(x + 0.5f + absX, y - 0.5f, z + 0.5f + absZ));
-										mBuilder.addVertex(new Vector3(x - 0.5f + absX, y - 0.5f, z + 0.5f + absZ));
-										mBuilder.addVertex(new Vector3(x - 0.5f + absX, y - 0.5f, z - 0.5f + absZ));
-										mBuilder.addVertex(new Vector3(x + 0.5f + absX, y - 0.5f, z - 0.5f + absZ));
-										mBuilder.addVertex(new Vector3(x + 0.5f + absX, y - 0.5f, z + 0.5f + absZ));
-
-										// normal: 0, -1, 0
-										//										
-										//uv
-										//										vertices.add(0.0f);
-										//										vertices.add(0.0f);
-										//										
-										//										vertices.add(0.2f);
-										//										vertices.add(0.2f);
-										//										
-										//										vertices.add(0.0f);
-										//										vertices.add(0.2f);
-										//										
-										//										vertices.add(0.0f);
-										//										vertices.add(0.0f);
-										//										
-										//										vertices.add(0.2f);
-										//										vertices.add(0.0f);
-										//										
-										//										vertices.add(0.2f);
-										//										vertices.add(0.2f);
-									}
-									if(z <= -16 || chunk.getBlockTypeAtChunkCoord(x, y, z - 1) ==  AirBlock.class) {
-
-										mBuilder.addVertex(new Vector3(x - 0.5f + absX, y - 0.5f, z - 0.5f + absZ));
-										mBuilder.addVertex(new Vector3(x - 0.5f + absX, y + 0.5f, z - 0.5f + absZ));
-										mBuilder.addVertex(new Vector3(x + 0.5f + absX, y + 0.5f, z - 0.5f + absZ));
-										mBuilder.addVertex(new Vector3(x - 0.5f + absX, y - 0.5f, z - 0.5f + absZ));
-										mBuilder.addVertex(new Vector3(x + 0.5f + absX, y + 0.5f, z - 0.5f + absZ));
-										mBuilder.addVertex(new Vector3(x + 0.5f + absX, y - 0.5f, z - 0.5f + absZ));
-
-										// normal: 0, 0, -1
-
-										//										vertices.add(0.4f);	vertices.add(0.4f);										
-										//										vertices.add(0.4f);	vertices.add(0.6f);										
-										//										vertices.add(0.6f);	vertices.add(0.6f);										
-										//										vertices.add(0.4f);	vertices.add(0.4f);										
-										//										vertices.add(0.6f);	vertices.add(0.6f);										
-										//										vertices.add(0.6f);	vertices.add(0.4f);
-									}									
-									if(z >= 16 || chunk.getBlockTypeAtChunkCoord(x, y, z + 1) == AirBlock.class) {
-
-										mBuilder.addVertex(new Vector3(x - 0.5f + absX, y - 0.5f, z + 0.5f + absZ));
-										mBuilder.addVertex(new Vector3(x + 0.5f + absX, y - 0.5f, z + 0.5f + absZ));
-										mBuilder.addVertex(new Vector3(x + 0.5f + absX, y + 0.5f, z + 0.5f + absZ));
-										mBuilder.addVertex(new Vector3(x - 0.5f + absX, y - 0.5f, z + 0.5f + absZ));
-										mBuilder.addVertex(new Vector3(x + 0.5f + absX, y + 0.5f, z + 0.5f + absZ));
-										mBuilder.addVertex(new Vector3(x - 0.5f + absX, y + 0.5f, z + 0.5f + absZ));
-
-										// normal 0, 0, 1
-
-										//										vertices.add(0.4f);	vertices.add(0.4f);										
-										//										vertices.add(0.4f);	vertices.add(0.6f);										
-										//										vertices.add(0.6f);	vertices.add(0.6f);										
-										//										vertices.add(0.4f); vertices.add(0.4f);
-										//										vertices.add(0.6f);	vertices.add(0.6f);										
-										//										vertices.add(0.6f);	vertices.add(0.4f);
-									}									
-									if(x <= -16 || chunk.getBlockTypeAtChunkCoord(x - 1, y, z) == AirBlock.class) {
-
-										mBuilder.addVertex(new Vector3());
-										mBuilder.addVertex(new Vector3());
-										mBuilder.addVertex(new Vector3());
-										mBuilder.addVertex(new Vector3());
-										mBuilder.addVertex(new Vector3());
-										mBuilder.addVertex(new Vector3());
-
-										// normal -1, 0, 0
-
-										//										vertices.add(x - 0.5f + absX);
-										//										vertices.add(y - 0.5f);
-										//										vertices.add(z - 0.5f + absZ);
-										//										vertices.add(-1.0f);
-										//										vertices.add(0.0f);
-										//										vertices.add(0.0f);
-										//										vertices.add(0.6f);
-										//										vertices.add(0.6f);
-										//										
-										//										vertices.add(x - 0.5f + absX);
-										//										vertices.add(y - 0.5f);
-										//										vertices.add(z + 0.5f + absZ);
-										//										vertices.add(-1.0f);
-										//										vertices.add(0.0f);
-										//										vertices.add(0.0f);
-										//										vertices.add(0.6f);
-										//										vertices.add(0.8f);
-										//										
-										//										vertices.add(x - 0.5f + absX);
-										//										vertices.add(y + 0.5f);
-										//										vertices.add(z + 0.5f + absZ);
-										//										vertices.add(-1.0f);
-										//										vertices.add(0.0f);
-										//										vertices.add(0.0f);
-										//										vertices.add(0.8f);
-										//										vertices.add(0.8f);
-										//										
-										//										vertices.add(x - 0.5f + absX);
-										//										vertices.add(y - 0.5f);
-										//										vertices.add(z - 0.5f + absZ);
-										//										vertices.add(-1.0f);
-										//										vertices.add(0.0f);
-										//										vertices.add(0.0f);
-										//										vertices.add(0.6f);
-										//										vertices.add(0.6f);
-										//										
-										//										vertices.add(x - 0.5f + absX);
-										//										vertices.add(y + 0.5f);
-										//										vertices.add(z + 0.5f + absZ);
-										//										vertices.add(-1.0f);
-										//										vertices.add(0.0f);
-										//										vertices.add(0.0f);
-										//										vertices.add(0.8f);
-										//										vertices.add(0.8f);
-										//										
-										//										vertices.add(x - 0.5f + absX);
-										//										vertices.add(y + 0.5f);
-										//										vertices.add(z - 0.5f + absZ);
-										//										vertices.add(-1.0f);
-										//										vertices.add(0.0f);
-										//										vertices.add(0.0f);
-										//										vertices.add(0.8f);
-										//										vertices.add(0.6f);
-									}
-									if(x >= 16 || chunk.getBlockTypeAtChunkCoord(x + 1, y, z) == AirBlock.class) {
-
-										mBuilder.addVertex(new Vector3());
-										mBuilder.addVertex(new Vector3());
-										mBuilder.addVertex(new Vector3());
-										mBuilder.addVertex(new Vector3());
-										mBuilder.addVertex(new Vector3());
-										mBuilder.addVertex(new Vector3());
-
-										// normal 1, 0, 0
-
-										//										vertices.add(x + 0.5f + absX);
-										//										vertices.add(y - 0.5f);
-										//										vertices.add(z - 0.5f + absZ);
-										//										vertices.add(+1.0f);
-										//										vertices.add(0.0f);
-										//										vertices.add(0.0f);
-										//										vertices.add(0.8f);
-										//										vertices.add(0.8f);
-										//										
-										//										vertices.add(x + 0.5f + absX);
-										//										vertices.add(y + 0.5f);
-										//										vertices.add(z - 0.5f + absZ);
-										//										vertices.add(1.0f);
-										//										vertices.add(0.0f);
-										//										vertices.add(0.0f);
-										//										vertices.add(1.0f);
-										//										vertices.add(0.8f);
-										//										
-										//										vertices.add(x + 0.5f + absX);
-										//										vertices.add(y + 0.5f);
-										//										vertices.add(z + 0.5f + absZ);
-										//										vertices.add(1.0f);
-										//										vertices.add(0.0f);
-										//										vertices.add(0.0f);
-										//										vertices.add(1.0f);
-										//										vertices.add(1.0f);
-										//										
-										//										vertices.add(x + 0.5f + absX);
-										//										vertices.add(y - 0.5f);
-										//										vertices.add(z - 0.5f + absZ);
-										//										vertices.add(1.0f);
-										//										vertices.add(0.0f);
-										//										vertices.add(0.0f);
-										//										vertices.add(0.8f);
-										//										vertices.add(0.8f);
-										//										
-										//										vertices.add(x + 0.5f + absX);
-										//										vertices.add(y + 0.5f);
-										//										vertices.add(z + 0.5f + absZ);
-										//										vertices.add(1.0f);
-										//										vertices.add(0.0f);
-										//										vertices.add(0.0f);
-										//										vertices.add(1.0f);
-										//										vertices.add(1.0f);
-										//										
-										//										vertices.add(x + 0.5f + absX);
-										//										vertices.add(y - 0.5f);
-										//										vertices.add(z + 0.5f + absZ);
-										//										vertices.add(1.0f);
-										//										vertices.add(0.0f);
-										//										vertices.add(0.0f);
-										//										vertices.add(0.8f);
-										//										vertices.add(1.0f);
-									}
-
-
+									// TODO
 								}
 							} catch (OutOfChunkBoundsException e) {
 								// TODO Auto-generated catch block
@@ -531,62 +323,57 @@ public class MiniMineMeshGenerator {
 		return builder.createMesh();
 	}
 	
+	/**
+	 * 
+	 * @param chunk
+	 * @param chunkXPosition
+	 * @param chunkZPosition
+	 * @return
+	 */
+	public Mesh generateChunk(Chunk chunk, int chunkXPosition, int chunkZPosition) {
 
-	// http://stackoverflow.com/questions/27452192/libgdx-mapping-individual-textures-to-each-face-of-a-box-using-modelbuilder-cr
-
-	//  model = modelBuilder.createSphere(2f, 2f, 2f, 20, 20, 
-	//  model = modelBuilder.createBox(5f, 5f, 5f, 
-	//    new Material(), Usage.Position | Usage.Normal | Usage.TextureCoordinates);
-
-	//  modelBuilder.begin();
-	//  modelBuilder.part(id, mesh, primitiveType, material);
-	//  model = modelBuilder.end();
-	
-	
-	public Mesh generateChunk(Chunk chunk, int xPos, int zPos) {
-	
 		MiniMineAbstractTriangleMeshBuilder builder = new MiniMineTriangleVtxNrmUvBuilder();
-		
-//		try {
-			int absX = xPos * Chunk.CHUNK_SIZE_XZ;
-			int absZ = zPos * Chunk.CHUNK_SIZE_XZ;
-			
-			int index = 0;
+		int chunkWorldCoordX = chunkXPosition * Chunk.CHUNK_SIZE_XZ;
+		int chunkWorldCoordZ = chunkZPosition * Chunk.CHUNK_SIZE_XZ;
+		/*
+		 *  y chunk position is not needed because we only draw one 
+		 *  level on y but several chunks in x and z directions
+		 */
 
-			if (chunk != null) {
-				for (int x = -16; x <= Chunk.MAX_CHUNK_COORD_XZ; x++) {
-					for (int y = 0; y <= Chunk.MAX_CHUNK_COORD_Y; y++) {
-						for (int z = -16; z <= Chunk.MAX_CHUNK_COORD_XZ; z++) {
-							try {
-								if(chunk.getBlockTypeAtChunkCoord(x, y, z) != AirBlock.class) {
+		if (chunk != null) {
+			for (int x = -16; x <= Chunk.MAX_CHUNK_COORD_XZ; x++) {
+				for (int y = 0; y <= Chunk.MAX_CHUNK_COORD_Y; y++) {
+					for (int z = -16; z <= Chunk.MAX_CHUNK_COORD_XZ; z++) {
+						try {
+							if(chunk.getBlockTypeAtChunkCoord(x, y, z) != AirBlock.class) {
 
-									Vector3 a, b, c, d, e, f, g, h;
-									a = vA;
-									b = vB;
-									c = vC;
-									d = vD;
-									e = vE;
-									f = vF;
-									g = vG;
-									h = vH;
-									
-									Class<?> type = chunk.getBlockTypeAtChunkCoord(x, y, z);
-									if(type != AirBlock.class) {
-										float startY = 0.0f;
-										float endY = 0.25f;
-										if(type == DirtBlock.class) {
-											startY = 0.0f;
-											endY = 0.25f;
-										} else if(type == StoneBlock.class) {
-											startY = 0.25f;
-											endY = 0.5f;
-										} else if(type == TNTBlock.class) {
-											startY = 0.5f;
-											endY = 0.75f;
-										} else if(type == WoodBlock.class) {
-											startY = 0.75f;
-											endY = 1.0f;
-										}
+								Vector3 a, b, c, d, e, f, g, h;
+								a = vA;
+								b = vB;
+								c = vC;
+								d = vD;
+								e = vE;
+								f = vF;
+								g = vG;
+								h = vH;
+
+								Class<?> type = chunk.getBlockTypeAtChunkCoord(x, y, z);
+								if(type != AirBlock.class) {
+									float startY = 0.0f;
+									float endY = 0.25f;
+									if(type == DirtBlock.class) {
+										startY = 0.0f;
+										endY = 0.25f;
+									} else if(type == StoneBlock.class) {
+										startY = 0.25f;
+										endY = 0.5f;
+									} else if(type == TNTBlock.class) {
+										startY = 0.5f;
+										endY = 0.75f;
+									} else if(type == WoodBlock.class) {
+										startY = 0.75f;
+										endY = 1.0f;
+									}
 
 									// check if the neighbour block is air or the edge of the chunk has been reached
 									if(y < 0 || chunk.getBlockTypeAtChunkCoord(x, y + 1, z) == AirBlock.class) {
@@ -594,18 +381,18 @@ public class MiniMineMeshGenerator {
 										// y+11 --> top face
 										builder.setNormal(nTop);								
 										builder.setUvCoords(0.1666667f, startY);
-										builder.addVertex(new Vector3(x + d.x + absX, y + d.y, z + d.z + absZ));
+										builder.addVertex(new Vector3(x + d.x + chunkWorldCoordX, y + d.y, z + d.z + chunkWorldCoordZ));
 										builder.setUvCoords(0.1666667f, endY);
-										builder.addVertex(new Vector3(x + c.x + absX, y + c.y, z + c.z + absZ));
+										builder.addVertex(new Vector3(x + c.x + chunkWorldCoordX, y + c.y, z + c.z + chunkWorldCoordZ));
 										builder.setUvCoords(0.333333f, endY);
-										builder.addVertex(new Vector3(x + g.x + absX, y + g.y, z + g.z + absZ));
+										builder.addVertex(new Vector3(x + g.x + chunkWorldCoordX, y + g.y, z + g.z + chunkWorldCoordZ));
 										builder.setUvCoords(0.1666667f, startY);
-										builder.addVertex(new Vector3(x + d.x + absX, y + d.y, z + d.z + absZ));
+										builder.addVertex(new Vector3(x + d.x + chunkWorldCoordX, y + d.y, z + d.z + chunkWorldCoordZ));
 										builder.setUvCoords(0.333333f, endY);
-										builder.addVertex(new Vector3(x + g.x + absX, y + g.y, z + g.z + absZ));
+										builder.addVertex(new Vector3(x + g.x + chunkWorldCoordX, y + g.y, z + g.z + chunkWorldCoordZ));
 										builder.setUvCoords(0.333333f, startY);
-										builder.addVertex(new Vector3(x + h.x + absX, y + h.y, z + h.z + absZ));	
-										
+										builder.addVertex(new Vector3(x + h.x + chunkWorldCoordX, y + h.y, z + h.z + chunkWorldCoordZ));	
+
 									}
 
 									if(y <= 0 || chunk.getBlockTypeAtChunkCoord(x, y - 1, z) == AirBlock.class) {
@@ -613,117 +400,103 @@ public class MiniMineMeshGenerator {
 										// y-1 --> bottom face
 										builder.setNormal(nBottom);								
 										builder.setUvCoords(0f, startY);
-										builder.addVertex(new Vector3(x + e.x + absX, y + e.y, z + e.z + absZ));
+										builder.addVertex(new Vector3(x + e.x + chunkWorldCoordX, y + e.y, z + e.z + chunkWorldCoordZ));
 										builder.setUvCoords(0.166f, endY);
-										builder.addVertex(new Vector3(x + f.x + absX, y + f.y, z + f.z + absZ));
+										builder.addVertex(new Vector3(x + f.x + chunkWorldCoordX, y + f.y, z + f.z + chunkWorldCoordZ));
 										builder.setUvCoords(0f, endY);
-										builder.addVertex(new Vector3(x + b.x + absX, y + b.y, z + b.z + absZ));
+										builder.addVertex(new Vector3(x + b.x + chunkWorldCoordX, y + b.y, z + b.z + chunkWorldCoordZ));
 										builder.setUvCoords(0.0f, startY);
-										builder.addVertex(new Vector3(x + e.x + absX, y + e.y, z + e.z + absZ));
+										builder.addVertex(new Vector3(x + e.x + chunkWorldCoordX, y + e.y, z + e.z + chunkWorldCoordZ));
 										builder.setUvCoords(0.166f, startY);
-										builder.addVertex(new Vector3(x + b.x + absX, y + b.y, z + b.z + absZ));
+										builder.addVertex(new Vector3(x + b.x + chunkWorldCoordX, y + b.y, z + b.z + chunkWorldCoordZ));
 										builder.setUvCoords(0.166f, endY);
-										builder.addVertex(new Vector3(x + a.x + absX, y + a.y, z + a.z + absZ));
-										// normal: 0, -1, 0
-										
+										builder.addVertex(new Vector3(x + a.x + chunkWorldCoordX, y + a.y, z + a.z + chunkWorldCoordZ));
+
 									}
 									if(z <= -16 || chunk.getBlockTypeAtChunkCoord(x, y, z - 1) ==  AirBlock.class) {
-										
-										// z-1 --> back face
-										builder.setNormal(nBack);								
-										builder.setUvCoords(0.5f, endY);
-										builder.addVertex(new Vector3(x + f.x + absX, y + f.y, z + f.z + absZ));
-										builder.setUvCoords(0.5f, startY);
-										builder.addVertex(new Vector3(x + e.x + absX, y + e.y, z + e.z + absZ));
-										builder.setUvCoords(0.3333333f, startY);
-										builder.addVertex(new Vector3(x + h.x + absX, y + h.y, z + h.z + absZ));
-										builder.setUvCoords(0.5f, endY);
-										builder.addVertex(new Vector3(x + f.x + absX, y + f.y, z + f.z + absZ));
-										builder.setUvCoords(0.3333333f, startY);
-										builder.addVertex(new Vector3(x + h.x + absX, y + h.y, z + h.z + absZ));
-										builder.setUvCoords(0.3333333f, endY);
-										builder.addVertex(new Vector3(x + g.x + absX, y + g.y, z + g.z + absZ));
 
-										// normal: 0, 0, -1
-									}									
-									if(z >= 16 || chunk.getBlockTypeAtChunkCoord(x, y, z + 1) == AirBlock.class) {
-										
 										// z+1 --> front face
 										builder.setNormal(nFront);								
 										builder.setUvCoords(0.5f, endY);
-										builder.addVertex(new Vector3(x + a.x + absX, y + a.y, z + a.z + absZ));
+										builder.addVertex(new Vector3(x + a.x + chunkWorldCoordX, y + a.y, z + a.z + chunkWorldCoordZ));
 										builder.setUvCoords(0.666f, endY);
-										builder.addVertex(new Vector3(x + b.x + absX, y + b.y, z + b.z + absZ));
+										builder.addVertex(new Vector3(x + b.x + chunkWorldCoordX, y + b.y, z + b.z + chunkWorldCoordZ));
 										builder.setUvCoords(0.666f, startY);
-										builder.addVertex(new Vector3(x + c.x + absX, y + c.y, z + c.z + absZ));
+										builder.addVertex(new Vector3(x + c.x + chunkWorldCoordX, y + c.y, z + c.z + chunkWorldCoordZ));
 										builder.setUvCoords(0.5f, endY);
-										builder.addVertex(new Vector3(x + a.x + absX, y + a.y, z + a.z + absZ));
+										builder.addVertex(new Vector3(x + a.x + chunkWorldCoordX, y + a.y, z + a.z + chunkWorldCoordZ));
 										builder.setUvCoords(0.666f, startY);
-										builder.addVertex(new Vector3(x + c.x + absX, y + c.y, z + c.z + absZ));
+										builder.addVertex(new Vector3(x + c.x + chunkWorldCoordX, y + c.y, z + c.z + chunkWorldCoordZ));
 										builder.setUvCoords(0.5f, startY);
-										builder.addVertex(new Vector3(x + d.x + absX, y + d.y, z + d.z + absZ));
+										builder.addVertex(new Vector3(x + d.x + chunkWorldCoordX, y + d.y, z + d.z + chunkWorldCoordZ));
 
-										// normal 0, 0, 1
+									}									
+									if(z >= 16 || chunk.getBlockTypeAtChunkCoord(x, y, z + 1) == AirBlock.class) {
+
+										// z-1 --> back face
+										builder.setNormal(nBack);								
+										builder.setUvCoords(0.5f, endY);
+										builder.addVertex(new Vector3(x + f.x + chunkWorldCoordX, y + f.y, z + f.z + chunkWorldCoordZ));
+										builder.setUvCoords(0.666f, endY);
+										builder.addVertex(new Vector3(x + e.x + chunkWorldCoordX, y + e.y, z + e.z + chunkWorldCoordZ));
+										builder.setUvCoords(0.666f, startY);
+										builder.addVertex(new Vector3(x + h.x + chunkWorldCoordX, y + h.y, z + h.z + chunkWorldCoordZ));
+										builder.setUvCoords(0.5f, endY);
+										builder.addVertex(new Vector3(x + f.x + chunkWorldCoordX, y + f.y, z + f.z + chunkWorldCoordZ));
+										builder.setUvCoords(0.666f, startY);
+										builder.addVertex(new Vector3(x + h.x + chunkWorldCoordX, y + h.y, z + h.z + chunkWorldCoordZ));
+										builder.setUvCoords(0.5f, startY);
+										builder.addVertex(new Vector3(x + g.x + chunkWorldCoordX, y + g.y, z + g.z + chunkWorldCoordZ));
+
+
 									}									
 									if(x <= -16 || chunk.getBlockTypeAtChunkCoord(x - 1, y, z) == AirBlock.class) {
 
 										// x-1 --> left face
 										builder.setNormal(nLeft);								
 										builder.setUvCoords(0.666f, endY);
-										builder.addVertex(new Vector3(x + e.x + absX, y + e.y, z + e.z + absZ));
+										builder.addVertex(new Vector3(x + e.x + chunkWorldCoordX, y + e.y, z + e.z + chunkWorldCoordZ));
 										builder.setUvCoords(0.8333f, endY);
-										builder.addVertex(new Vector3(x + a.x + absX, y + a.y, z + a.z + absZ));
+										builder.addVertex(new Vector3(x + a.x + chunkWorldCoordX, y + a.y, z + a.z + chunkWorldCoordZ));
 										builder.setUvCoords(0.8333f, startY);
-										builder.addVertex(new Vector3(x + d.x + absX, y + d.y, z + d.z + absZ));
+										builder.addVertex(new Vector3(x + d.x + chunkWorldCoordX, y + d.y, z + d.z + chunkWorldCoordZ));
 										builder.setUvCoords(0.666f, endY);
-										builder.addVertex(new Vector3(x + e.x + absX, y + e.y, z + e.z + absZ));
+										builder.addVertex(new Vector3(x + e.x + chunkWorldCoordX, y + e.y, z + e.z + chunkWorldCoordZ));
 										builder.setUvCoords(0.8333f, startY);
-										builder.addVertex(new Vector3(x + d.x + absX, y + d.y, z + d.z + absZ));
+										builder.addVertex(new Vector3(x + d.x + chunkWorldCoordX, y + d.y, z + d.z + chunkWorldCoordZ));
 										builder.setUvCoords(0.666f, startY);
-										builder.addVertex(new Vector3(x + h.x + absX, y + h.y, z + h.z + absZ));
+										builder.addVertex(new Vector3(x + h.x + chunkWorldCoordX, y + h.y, z + h.z + chunkWorldCoordZ));
 
-										// normal -1, 0, 0
 
 									}
 									if(x >= 16 || chunk.getBlockTypeAtChunkCoord(x + 1, y, z) == AirBlock.class) {
 
 										// x+1 --> right face
 										builder.setNormal(nRight);								
-										builder.setUvCoords(1f, endY);
-										builder.addVertex(new Vector3(x + b.x + absX, y + b.y, z + b.z + absZ));
-										builder.setUvCoords(1f, startY);
-										builder.addVertex(new Vector3(x + f.x + absX, y + f.y, z + f.z + absZ));
-										builder.setUvCoords(0.833333f, startY);
-										builder.addVertex(new Vector3(x + g.x + absX, y + g.y, z + g.z + absZ));
-										builder.setUvCoords(1f, endY);
-										builder.addVertex(new Vector3(x + b.x + absX, y + b.y, z + b.z + absZ));
-										builder.setUvCoords(0.833333f, startY);
-										builder.addVertex(new Vector3(x + g.x + absX, y + g.y, z + g.z + absZ));
-										builder.setUvCoords(0.833333f, endY);
-										builder.addVertex(new Vector3(x + c.x + absX, y + c.y, z + c.z + absZ));
+										builder.setUvCoords(0.666f, endY);
+										builder.addVertex(new Vector3(x + b.x + chunkWorldCoordX, y + b.y, z + b.z + chunkWorldCoordZ));
+										builder.setUvCoords(0.8333f, endY);
+										builder.addVertex(new Vector3(x + f.x + chunkWorldCoordX, y + f.y, z + f.z + chunkWorldCoordZ));
+										builder.setUvCoords(0.8333f, startY);
+										builder.addVertex(new Vector3(x + g.x + chunkWorldCoordX, y + g.y, z + g.z + chunkWorldCoordZ));
+										builder.setUvCoords(0.666f, endY);
+										builder.addVertex(new Vector3(x + b.x + chunkWorldCoordX, y + b.y, z + b.z + chunkWorldCoordZ));
+										builder.setUvCoords(0.8333f, startY);
+										builder.addVertex(new Vector3(x + g.x + chunkWorldCoordX, y + g.y, z + g.z + chunkWorldCoordZ));
+										builder.setUvCoords(0.666f, startY);
+										builder.addVertex(new Vector3(x + c.x + chunkWorldCoordX, y + c.y, z + c.z + chunkWorldCoordZ));
 
-										// normal 1, 0, 0
 									}
-
-
 								}
-								}
-							} catch (OutOfChunkBoundsException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
 							}
-
+						} catch (OutOfChunkBoundsException e) {
+							e.printStackTrace();
 						}
-					}
-				}
-			}
 
-
-//		} catch (ChunkNotExistingException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-		
+					} // end for z
+				} // end for y
+			} // end for x
+		}
 		return builder.createMesh();
 	}
 

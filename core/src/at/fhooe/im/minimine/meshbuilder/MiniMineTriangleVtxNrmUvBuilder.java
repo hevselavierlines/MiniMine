@@ -45,7 +45,7 @@ public class MiniMineTriangleVtxNrmUvBuilder extends MiniMineAbstractTriangleMes
 	@Override
 	public Mesh createMesh() {
 		float[] meshData = getVertices();
-		short[] indicesData = getIndices();
+//		short[] indicesData = getIndices();
 		vertices.clear();
 //		Mesh mesh = new Mesh(true, meshData.length, indicesData.length, 
 		Mesh mesh = new Mesh(true, meshData.length, 0, 

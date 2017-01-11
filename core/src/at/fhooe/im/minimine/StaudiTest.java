@@ -88,8 +88,8 @@ public class StaudiTest extends ApplicationAdapter {
 			e.printStackTrace();
 		}
 		worldRenderer = new WorldRenderer(world, 10);
-		for(int i = -2; i <= 2; i++) {
-			worldRenderer.loadMeshAt(0, i);
+		for(int i = 0; i <= 1; i++) {
+			worldRenderer.loadMeshAt(i, 0);
 		}
 		worldRenderer.loadMeshAt(0, 0);
 		
