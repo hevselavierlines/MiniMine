@@ -13,10 +13,10 @@ public class UphillBiomeGenerator extends AbstractBiomeGenerator {
 	public Chunk generateChunk(World w, int m, int n) {
 		Chunk newChunk = new Chunk(m, n, Biomes.UPHILL);
 		
-		Chunk north = this.getNorthNeighbour(w, m, n);
-		Chunk east = this.getEastNeighbour(w, m, n);
-		Chunk south = this.getSouthNeighbour(w, m, n);
-		Chunk west = this.getWestNeighbour(w, m, n);
+		Chunk north = this.getNorthNeighbour(w, m, n + 1);
+		Chunk east = this.getEastNeighbour(w, m + 1, n);
+		Chunk south = this.getSouthNeighbour(w, m, n - 1);
+		Chunk west = this.getWestNeighbour(w, m - 1, n);
 		int amountExistingNeighbours = getAmountExistingNeighbours(north, east, south, west);
 		
 		switch(amountExistingNeighbours) {
